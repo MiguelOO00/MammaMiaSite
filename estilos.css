@@ -1,0 +1,1337 @@
+/* estilos.css -> esta dividido pelas partes da pagina, pela mesma ordem do index.html; */
+/* cada parte tem no fim o tablet (700px) e o computador (1100px) -> assim esta tudo junto; */
+
+
+/* ================================================================== */
+/* 1. BASE -> cores, letras, botoes, barras e rodape; */
+/* ================================================================== */
+
+/* cores -> as do Figma, mudo aqui e muda em todo o lado; */
+:root {
+  --farinha: #E8E2D7;
+  --papel: #F5F1EA;
+  --forno: #2B2724;
+  --tinta: #2B2724;
+  --cinza: #6E675E;
+  --claro: #F5F1EA;
+  --linha: #D3CABA;
+  --tomate: #B23A26;
+  --tomate-escuro: #8F2C1C;
+  --manjericao: #4F6B2F;
+  --massa: #D9B57A;
+  --letra: "Montserrat", system-ui, sans-serif;
+  --mao: "Caveat", "Comic Sans MS", cursive;
+}
+
+/* tira as margens do browser; */
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 76px; /* senao a barra de cima tapava o titulo quando se carrega num link; */
+  overflow-x: clip; /* clip e nao hidden -> o hidden estragava o sticky; */
+}
+body {
+  margin: 0;
+  overflow-x: clip;
+  background: var(--farinha);
+  color: var(--tinta);
+  font-family: var(--letra);
+  font-size: 16px;
+  line-height: 1.6;
+  padding-bottom: 84px; /* para a barra de baixo nao tapar o rodape; */
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, p {
+  margin: 0;
+}
+h1, h2 {
+  font-weight: 300;
+  line-height: 1.12;
+}
+h1 {
+  font-size: clamp(2.5rem, 5.2vw, 4.25rem); /* cresce com o ecra mas nao passa dos 4.25rem; */
+}
+h2 {
+  font-size: clamp(1.9rem, 3.2vw, 2.75rem);
+}
+h3 {
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+a {
+  color: var(--tomate);
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+:focus-visible {
+  outline: 3px solid var(--tomate); /* contorno para quem usa o teclado; */
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.cinza {
+  color: var(--cinza);
+}
+.mao {
+  font-family: var(--mao);
+  font-weight: 700;
+  color: var(--tomate);
+  font-size: 1.6rem;
+  line-height: 1.1;
+}
+.defs-pizza {
+  position: absolute; /* com display none os gradientes deixavam de funcionar -> por isso fica assim escondido; */
+}
+
+/* wrap -> largura maxima, com 16px de lado no telemovel; */
+.wrap {
+  max-width: 1184px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+.cabecalho {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: .3rem 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* botoes -> o vermelho é so para o ligar, porque é o mais importante; */
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .4rem;
+  padding: .85rem 1.6rem;
+  border-radius: 999px;
+  border: 1.5px solid transparent;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.2;
+  transition: background .2s, color .2s;
+}
+.botao.tomate {
+  background: var(--tomate);
+  color: var(--claro);
+}
+.botao.tomate:hover {
+  background: var(--tomate-escuro);
+}
+.botao.linha {
+  border-color: var(--tinta);
+  color: var(--tinta);
+}
+.botao.linha:hover {
+  background: var(--tinta);
+  color: var(--claro);
+}
+.botao.claro {
+  background: var(--claro);
+  color: var(--tinta);
+}
+
+/* barra de cima -> meio transparente e desfocada; */
+.barra {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  padding: 0 16px;
+  background: color-mix(in srgb, var(--farinha) 92%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--linha);
+}
+.logo {
+  font-weight: 300;
+  letter-spacing: .45em;
+  font-size: 1rem;
+  color: var(--tinta);
+}
+.links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.links a {
+  color: var(--tinta);
+  font-size: .95rem;
+}
+.links a:hover {
+  color: var(--tomate);
+}
+.links .botao {
+  color: var(--claro);
+  padding: .6rem 1.4rem;
+}
+.so-pc {
+  display: none !important; /* no telemovel estes links nao cabem; */
+}
+.lingua {
+  font: inherit;
+  font-size: .8rem;
+  font-weight: 500;
+  letter-spacing: .08em;
+  cursor: pointer;
+  background: none;
+  border: 1.5px solid var(--linha);
+  color: var(--tinta);
+  border-radius: 999px;
+  padding: .3rem .7rem;
+}
+.lingua:hover {
+  border-color: var(--tinta);
+}
+
+/* barra de baixo -> so no telemovel; */
+.barra-baixo {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .6rem;
+  padding: .75rem 16px calc(.75rem + env(safe-area-inset-bottom)); /* o env é para a barra do iPhone nao tapar; */
+  background: var(--papel);
+  border-top: 1px solid var(--linha);
+}
+.barra-baixo .botao {
+  padding: .8rem;
+}
+
+/* rodape; */
+.rodape {
+  border-top: 1px solid var(--linha);
+  padding: 2rem 0;
+  color: var(--cinza);
+  font-size: .85rem;
+}
+.rodape-linha {
+  display: grid;
+  gap: .8rem;
+}
+.rodape-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem 1.4rem;
+}
+.rodape-links a {
+  color: var(--cinza);
+}
+
+/* tablet; */
+@media (min-width: 700px) {
+  .wrap {
+    padding: 0 32px;
+  }
+  .barra {
+    padding: 0 32px;
+  }
+  .rodape-linha {
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+  }
+  .rodape-links {
+    justify-content: center;
+  }
+}
+
+/* computador -> aparecem os links e sai a barra de baixo; */
+@media (min-width: 1100px) {
+  body {
+    padding-bottom: 0;
+  }
+  .wrap {
+    padding: 0 96px;
+    max-width: 1344px;
+  }
+  .barra {
+    height: 84px;
+    padding: 0 max(96px, calc((100% - 1344px) / 2 + 96px)); /* em ecras muito largos o logo fica alinhado com o texto; */
+  }
+  .so-pc {
+    display: inline-flex !important;
+  }
+  .barra-baixo {
+    display: none;
+  }
+}
+
+
+/* ================================================================== */
+/* 2. INICIO; */
+/* ================================================================== */
+
+.inicio {
+  position: relative;
+  overflow: hidden;
+  padding: 1.5rem 0 3.5rem;
+}
+.inicio .wrap {
+  position: relative;
+  z-index: 1; /* texto e pizza por cima da farinha; */
+}
+.farinha {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* a farinha nao apanha os cliques dos botoes; */
+}
+.inicio-grelha {
+  display: grid;
+  gap: 1.25rem;
+}
+.inicio-texto {
+  display: grid;
+  gap: 1.25rem;
+  justify-items: start;
+  order: 2; /* no telemovel o texto fica depois da pizza; */
+}
+.frase {
+  color: var(--cinza);
+  font-size: 1.05rem;
+  max-width: 32rem;
+}
+.botoes {
+  display: grid;
+  gap: .6rem;
+  width: 100%;
+}
+.servicos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem 1.2rem;
+  color: var(--cinza);
+  font-size: .9rem;
+}
+.servicos li::before {
+  content: "✓";
+  color: var(--manjericao);
+  font-weight: 600;
+  margin-right: .4rem;
+}
+
+/* estado -> verde aberto, vermelho fechado (a classe é posta no site.js); */
+.estado {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .35rem .9rem .35rem .75rem;
+  border-radius: 999px;
+  font-size: .85rem;
+  font-weight: 500;
+  background: color-mix(in srgb, var(--cinza) 12%, transparent);
+  color: var(--cinza);
+}
+.ponto {
+  width: .5rem;
+  height: .5rem;
+  border-radius: 50%;
+  background: currentColor; /* o ponto fica da cor do texto; */
+}
+.estado.aberto {
+  background: color-mix(in srgb, var(--manjericao) 13%, transparent);
+  color: var(--manjericao);
+}
+.estado.fechado {
+  background: color-mix(in srgb, var(--tomate) 11%, transparent);
+  color: var(--tomate);
+}
+
+/* pizza do inicio; */
+.pizza-caixa {
+  order: 1; /* no telemovel a pizza vem primeiro porque é o que chama mais a atencao; */
+  position: relative;
+  margin: 0 auto;
+  width: min(100%, 330px);
+}
+.pizza {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.nota-mao {
+  font-family: var(--mao);
+  font-weight: 700;
+  color: var(--tomate);
+  font-size: 1.5rem;
+  text-align: center;
+  transform: rotate(2deg);
+  margin-top: -.4rem;
+}
+.vapor path {
+  fill: none;
+  stroke: var(--cinza);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  opacity: .3;
+}
+.ing {
+  transform-box: fill-box;
+  transform-origin: center; /* cada ingrediente roda a partir do centro dele; */
+}
+
+/* animacoes -> so para quem nao tem menos movimento ligado no telemovel; */
+@media (prefers-reduced-motion: no-preference) {
+  .pizza .ing {
+    opacity: 0;
+    animation: cair .7s cubic-bezier(.2, .9, .3, 1.15) forwards;
+    animation-delay: calc(.4s + var(--o) * .08s); /* o --o é a ordem da peca -> caem uma de cada vez; */
+  }
+  .vapor path {
+    opacity: 0;
+    animation: vapor 4.4s ease-in-out infinite;
+  }
+  .vapor path:nth-child(2) {
+    animation-delay: 1.4s;
+  }
+  .vapor path:nth-child(3) {
+    animation-delay: 2.8s;
+  }
+  .nota-mao {
+    opacity: 0;
+    animation: aparecer .6s ease forwards 1.9s;
+  }
+}
+@keyframes cair {
+  from {
+    opacity: 0;
+    transform: translateY(-70px) rotate(-14deg) scale(1.2);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes vapor {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  40% {
+    opacity: .35;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+@keyframes aparecer {
+  to {
+    opacity: 1;
+  }
+}
+
+/* tablet; */
+@media (min-width: 700px) {
+  .botoes {
+    display: flex;
+    width: auto;
+  }
+}
+
+/* computador -> texto a esquerda e pizza a direita; */
+@media (min-width: 1100px) {
+  .inicio {
+    padding: 4.5rem 0 6rem;
+  }
+  .inicio-grelha {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 2rem;
+  }
+  .inicio-texto {
+    order: 1;
+    gap: 1.6rem;
+  }
+  .pizza-caixa {
+    order: 2;
+    width: min(100%, 520px);
+  }
+  .nota-mao {
+    text-align: right;
+    font-size: 2rem;
+  }
+}
+
+
+/* ================================================================== */
+/* 3. SUGESTOES; */
+/* ================================================================== */
+
+.sugestoes {
+  padding: 1rem 0 4rem;
+}
+.sugestoes .cabecalho {
+  display: block;
+}
+
+/* no telemovel os cartoes deslizam para o lado; */
+.cartoes {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 78%; /* 78% -> ve-se um bocado do proximo e percebe-se que da para deslizar; */
+  gap: .9rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  margin: 0 -16px;
+  padding: 0 16px .5rem;
+  scrollbar-width: none;
+}
+.cartoes::-webkit-scrollbar {
+  display: none;
+}
+.cartao {
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+  padding: 1.4rem;
+  background: var(--papel);
+  border: 1px solid var(--linha);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: border-color .2s;
+}
+.cartao:hover {
+  border-color: var(--tinta);
+}
+.cartao svg {
+  width: 112px;
+  height: 112px;
+}
+.cartao img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 4px;
+}
+.cartao h3 {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: .6rem;
+}
+.cartao .mao {
+  font-size: 1.35rem;
+}
+.cartao > p {
+  flex: 1; /* assim os precos ficam todos alinhados em baixo; */
+  color: var(--cinza);
+}
+.cartao-precos {
+  display: flex;
+  gap: 1.4rem;
+  padding-top: .9rem;
+  border-top: 1px dashed var(--linha);
+}
+.cartao-precos small {
+  display: block;
+  color: var(--cinza);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+}
+.cartao-precos b {
+  font-weight: 500;
+}
+
+/* tablet e computador -> cartoes lado a lado; */
+@media (min-width: 700px) {
+  .cartoes {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(3, 1fr);
+    overflow: visible;
+    margin: 0;
+    padding: 0;
+  }
+}
+@media (min-width: 1100px) {
+  .sugestoes {
+    padding: 1rem 0 7rem;
+  }
+  .sugestoes .cabecalho {
+    display: flex;
+  }
+}
+
+
+/* ================================================================== */
+/* 4. MENU; */
+/* ================================================================== */
+
+.menu {
+  background: var(--papel); /* fundo mais claro, tipo papel; */
+  padding: 3.5rem 0;
+  border-top: 1px solid var(--linha);
+  border-bottom: 1px solid var(--linha);
+}
+
+/* pesquisa e filtros; */
+.ferramentas {
+  display: grid;
+  gap: .8rem;
+  margin-bottom: 1.2rem;
+}
+.pesquisa {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  height: 48px;
+  padding: 0 1rem;
+  background: var(--claro);
+  border: 1.5px solid var(--linha);
+  border-radius: 999px;
+}
+.pesquisa:focus-within {
+  border-color: var(--tinta); /* a borda escurece quando se esta a escrever; */
+}
+.pesquisa svg {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: var(--cinza);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.pesquisa input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: var(--tinta);
+  outline: none;
+}
+.filtros {
+  display: flex;
+  gap: .5rem;
+  overflow-x: auto; /* no telemovel os filtros deslizam para o lado; */
+  margin: 0 -16px;
+  padding: 0 16px;
+  scrollbar-width: none;
+}
+.filtros::-webkit-scrollbar {
+  display: none;
+}
+.filtro {
+  font: inherit;
+  font-size: .85rem;
+  white-space: nowrap;
+  cursor: pointer;
+  background: none;
+  border: 1.5px solid var(--linha);
+  color: var(--cinza);
+  border-radius: 999px;
+  padding: .45rem .95rem;
+}
+.filtro[aria-pressed="true"] {
+  background: var(--tinta);
+  border-color: var(--tinta);
+  color: var(--claro);
+}
+
+/* separadores das categorias; */
+.separadores {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  margin: 0 -16px 1.4rem;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--linha);
+  scrollbar-width: none;
+}
+.separadores::-webkit-scrollbar {
+  display: none;
+}
+.separadores button {
+  font: inherit;
+  font-size: 1rem;
+  color: var(--cinza);
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px; /* para o risco vermelho ficar por cima da linha cinzenta; */
+  padding: .7rem 0;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.separadores button[aria-selected="true"] {
+  color: var(--tinta);
+  font-weight: 500;
+  border-bottom-color: var(--tomate);
+}
+.nota-categoria {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+/* o --col é a largura das colunas dos precos -> igual no cabecalho e nos pratos para ficarem alinhados; */
+.lista {
+  --col: 58px;
+}
+.tamanhos,
+.prato-topo.tres {
+  display: grid;
+  grid-template-columns: 1fr repeat(3, var(--col));
+  gap: .4rem;
+  align-items: end;
+}
+.tamanhos {
+  padding: .6rem 0 .4rem;
+}
+.tamanhos::before {
+  content: ""; /* coluna vazia -> os bonecos ficam por cima dos precos; */
+}
+
+/* bonecos dos tamanhos -> sao botoes que mudam o tamanho; */
+.tamanhos button {
+  display: grid;
+  justify-items: end;
+  gap: .3rem;
+  padding: .2rem 0;
+  font: inherit;
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .05em;
+  color: var(--cinza);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.tamanhos button:hover {
+  color: var(--tinta);
+}
+.tamanhos svg {
+  height: 19px;
+  width: auto;
+  fill: currentColor;
+  opacity: .75;
+}
+.tamanhos button[aria-pressed="true"] {
+  color: var(--tomate);
+}
+.tamanhos button[aria-pressed="true"] svg {
+  opacity: 1;
+}
+
+/* cada prato; */
+.prato {
+  position: relative;
+  padding: 1rem 0;
+  border-bottom: 1px dashed var(--linha);
+  cursor: pointer;
+  transition: background .15s;
+}
+.prato:hover {
+  background: color-mix(in srgb, var(--farinha) 40%, transparent);
+}
+.prato.ativo::before {
+  content: ""; /* risco vermelho no prato que esta na pizza do lado; */
+  position: absolute;
+  left: -12px;
+  top: 1rem;
+  bottom: 1rem;
+  width: 3px;
+  border-radius: 2px;
+  background: var(--tomate);
+}
+.prato-topo {
+  display: flex;
+  align-items: baseline;
+  gap: .5rem;
+}
+.prato-nome {
+  font-size: 1rem;
+  font-weight: 500;
+}
+.prato-nome .mao {
+  font-size: 1.25rem;
+  margin-left: .35rem;
+  white-space: nowrap;
+}
+.pontos {
+  flex: 1; /* pontinhos entre o nome e o preco, como no menu de papel; */
+  min-width: 1rem;
+  border-bottom: 2px dotted color-mix(in srgb, var(--cinza) 45%, transparent);
+  transform: translateY(-5px);
+}
+.preco {
+  font-weight: 500;
+  font-size: .95rem;
+  font-variant-numeric: tabular-nums; /* os numeros ficam todos da mesma largura -> precos alinhados; */
+  text-align: right;
+  white-space: nowrap;
+}
+.nao-ha {
+  color: var(--cinza);
+  font-weight: 400;
+  font-size: .8rem;
+}
+.lista[data-tamanho="0"] .p0,
+.lista[data-tamanho="1"] .p1,
+.lista[data-tamanho="2"] .p2 {
+  color: var(--tomate); /* coluna do tamanho escolhido a vermelho; */
+}
+.ingredientes {
+  margin-top: .2rem;
+  color: var(--cinza);
+  font-size: .88rem;
+}
+.grupo {
+  margin-top: 1.6rem;
+  font-size: .8rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--cinza);
+}
+.vazio {
+  padding: 2rem 0;
+  color: var(--cinza);
+}
+.rodape-menu {
+  margin-top: 2rem;
+  font-size: .9rem;
+}
+
+/* pizza do lado -> no telemovel fica pequena colada em cima enquanto se desce; */
+.menu-grelha {
+  display: flex;
+  flex-direction: column-reverse; /* no telemovel a pizza vem antes da lista; */
+  gap: 1rem;
+}
+.menu-grelha.sem-vista .vista {
+  display: none; /* nas massas e saladas nao ha pizza; */
+}
+.vista {
+  position: sticky;
+  top: 60px;
+  z-index: 5;
+  display: grid;
+  grid-template-columns: 104px 1fr;
+  gap: .9rem;
+  align-items: center;
+  margin: 0 -16px;
+  padding: .6rem 16px;
+  background: color-mix(in srgb, var(--papel) 94%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--linha);
+}
+.vista-pizza {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.vista-escala {
+  transform-origin: 260px 260px; /* cresce e encolhe a partir do centro; */
+  transition: transform .45s cubic-bezier(.3, 1.3, .5, 1);
+}
+.vista-info {
+  display: grid;
+  gap: .15rem;
+  min-width: 0;
+}
+.vista-info .mao {
+  display: none;
+}
+.vista-info h3 {
+  font-size: 1.05rem;
+}
+#vistaIng {
+  font-size: .8rem;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* no telemovel so 2 linhas de ingredientes, senao a caixa ficava enorme; */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.tamanhos-botoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .3rem;
+  margin-top: .3rem;
+}
+.tamanhos-botoes button {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  padding: .25rem .6rem;
+  font: inherit;
+  font-size: .72rem;
+  color: var(--cinza);
+  background: none;
+  border: 1.5px solid var(--linha);
+  border-radius: 999px;
+  cursor: pointer;
+}
+.tamanhos-botoes svg {
+  display: none; /* no telemovel so o texto -> assim os 3 botoes cabem numa linha; */
+  height: 12px;
+  width: auto;
+  fill: currentColor;
+}
+.tamanhos-botoes button[aria-checked="true"] {
+  background: var(--tinta);
+  border-color: var(--tinta);
+  color: var(--claro);
+}
+.vista-preco {
+  font-weight: 500;
+  font-size: 1.05rem;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .vista.animar .ing {
+    opacity: 0;
+    animation: cair .5s cubic-bezier(.2, .9, .3, 1.15) forwards;
+    animation-delay: calc(var(--o) * .025s);
+  }
+}
+
+/* tablet; */
+@media (min-width: 700px) {
+  .lista {
+    --col: 70px;
+  }
+  .ferramentas {
+    grid-template-columns: minmax(260px, 380px) 1fr;
+    align-items: center;
+  }
+  .filtros {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* computador -> lista a esquerda e pizza a direita colada; */
+@media (min-width: 1100px) {
+  .menu {
+    padding: 6.5rem 0;
+  }
+  .menu-grelha {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 4rem;
+    align-items: start;
+  }
+  .menu-grelha.sem-vista {
+    grid-template-columns: 1fr;
+  }
+  .vista {
+    top: 104px;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin: 0;
+    padding: 0 .5rem 1rem 0;
+    background: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: 0;
+    max-height: calc(100vh - 124px); /* nunca fica mais alta que o ecra -> os botoes de tamanho estao sempre a vista; */
+    overflow-y: auto; /* se nao couber da para fazer scroll dentro da caixa; */
+    scrollbar-width: thin;
+  }
+  .vista-pizza {
+    width: clamp(260px, calc(100vh - 400px), 400px); /* nos portateis com ecra pequeno a pizza encolhe; */
+    margin: 0 auto;
+  }
+  .vista-info {
+    gap: .5rem;
+  }
+  .vista-info .mao {
+    display: block;
+    font-size: 1.5rem;
+  }
+  .vista-info h3 {
+    font-size: 1.6rem;
+    font-weight: 300;
+  }
+  #vistaIng {
+    font-size: .95rem;
+    -webkit-line-clamp: unset;
+  }
+  .tamanhos-botoes button {
+    font-size: .85rem;
+    padding: .45rem .9rem;
+  }
+  .tamanhos-botoes svg {
+    display: block;
+    height: 16px;
+  }
+  .vista-preco {
+    font-size: 1.6rem;
+    font-weight: 300;
+  }
+  .prato.ativo::before {
+    left: -16px;
+  }
+  .prato-nome,
+  .preco {
+    font-size: 1.05rem;
+  }
+  .ingredientes {
+    font-size: .95rem;
+  }
+}
+
+
+/* ================================================================== */
+/* 5. COMO PEDIR; */
+/* ================================================================== */
+
+.pedir {
+  background: var(--forno);
+  color: var(--claro);
+  padding: 3.5rem 0;
+}
+.pedir .mao {
+  color: var(--massa); /* o vermelho nao se le no escuro -> a nota fica cor de massa; */
+}
+.pedir .cabecalho {
+  justify-content: flex-start;
+}
+.opcoes {
+  display: grid;
+  gap: 1.6rem;
+}
+.opcao {
+  display: grid;
+  gap: .6rem;
+  padding-top: 1.3rem;
+  border-top: 1px solid color-mix(in srgb, var(--claro) 20%, transparent);
+}
+.opcao p {
+  opacity: .72;
+}
+.opcao svg {
+  width: 44px;
+  height: 44px;
+  fill: none;
+  stroke: var(--massa);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.telefone {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.2rem 2rem;
+  margin-top: 2.5rem;
+}
+.telefone .numero {
+  color: var(--claro);
+  font-size: clamp(2.4rem, 5vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+}
+.telefone p {
+  opacity: .72;
+  font-size: .9rem;
+}
+.telefone p a {
+  color: var(--claro);
+}
+.telefone .botao {
+  width: 100%;
+}
+
+/* tablet -> opcoes lado a lado; */
+@media (min-width: 700px) {
+  .opcoes {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+  .telefone .botao {
+    width: auto;
+  }
+}
+@media (min-width: 1100px) {
+  .pedir {
+    padding: 6.5rem 0;
+  }
+}
+
+
+/* ================================================================== */
+/* 6. FOTOS, HORARIO E MAPA; */
+/* ================================================================== */
+
+/* fotos -> grelha, ao tocar abre em grande; */
+.fotos {
+  padding: 3.5rem 0;
+}
+.fotos h2 {
+  margin-bottom: 1.6rem;
+}
+.fotos-grelha {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .6rem;
+}
+.foto {
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--papel);
+  cursor: zoom-in;
+}
+.foto img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  transition: transform .4s;
+}
+.foto:hover img {
+  transform: scale(1.04);
+}
+.foto-grande {
+  max-width: 92vw;
+  max-height: 88vh;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+.foto-grande::backdrop {
+  background: rgba(43, 39, 36, .85); /* escurece o fundo atras da foto; */
+}
+.foto-grande img {
+  display: block;
+  max-width: 92vw;
+  max-height: 88vh;
+  border-radius: 6px;
+}
+.foto-grande button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--claro);
+  color: var(--tinta);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* horario; */
+.horario {
+  padding: 3.5rem 0;
+}
+.horario-grelha {
+  display: grid;
+  gap: 2.5rem;
+}
+.horario h2 {
+  margin-bottom: 1.4rem;
+}
+.horario h3 {
+  margin: 2rem 0 .5rem;
+}
+.semana {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  max-width: 440px;
+}
+.semana li {
+  display: grid;
+  place-items: center;
+  height: 54px;
+  border-radius: 6px;
+  border: 1px dashed var(--linha);
+  font-size: .85rem;
+  font-weight: 500;
+  color: var(--cinza);
+}
+.semana li.aberto {
+  background: var(--tinta);
+  border-color: var(--tinta);
+  color: var(--claro);
+}
+.semana li.hoje {
+  outline: 2px solid var(--tomate); /* o dia de hoje fica com contorno vermelho; */
+  outline-offset: 2px;
+}
+.turnos {
+  display: flex;
+  gap: 2rem;
+  margin: 1.4rem 0 .6rem;
+}
+.turnos small {
+  display: block;
+  font-size: .75rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  color: var(--cinza);
+}
+.turnos b {
+  font-weight: 300;
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-variant-numeric: tabular-nums;
+}
+.contactos {
+  display: grid;
+  gap: .35rem;
+  margin-top: .6rem;
+}
+
+/* mapa -> no telemovel o cartao fica por baixo do mapa, no computador fica por cima; */
+.mapa {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--linha);
+  background: var(--papel);
+}
+.mapa-link {
+  position: relative;
+  display: block;
+  height: 280px;
+  overflow: hidden;
+}
+.mapa iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  pointer-events: none; /* o mapa nao se arrasta -> senao no telemovel o dedo ficava preso no mapa; */
+  filter: grayscale(1) sepia(.3) contrast(.9) brightness(1.04); /* cor de papel como o resto do site; */
+  transition: filter .6s ease;
+}
+.mapa-link:hover iframe {
+  filter: grayscale(.15) sepia(.1) contrast(.95); /* com o rato em cima ganha cor -> para se perceber que da para carregar; */
+}
+.mapa-esbatido {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 50%, color-mix(in srgb, var(--farinha) 45%, transparent) 100%); /* bordas esbatidas para o mapa nao parecer um bloco; */
+}
+
+/* o nosso pino por cima do do Google, com uma onda a sair; */
+.mapa-pino {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 40px;
+  height: 52px;
+  transform: translate(-50%, -100%); /* a ponta do pino fica mesmo em cima da pizzaria; */
+  filter: drop-shadow(0 4px 4px rgba(43, 39, 36, .3));
+}
+.mapa-pino svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.pino-onda {
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  width: 44px;
+  height: 16px;
+  margin-left: -22px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--tomate) 35%, transparent);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .pino-onda {
+    animation: onda 2.2s ease-out infinite;
+  }
+  .mapa-pino svg {
+    animation: saltar 2.2s ease-in-out infinite;
+  }
+}
+@keyframes onda {
+  0% { transform: scale(.4); opacity: .9; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+@keyframes saltar {
+  0%, 100% { transform: translateY(0); }
+  15% { transform: translateY(-6px); }
+  30% { transform: translateY(0); }
+}
+
+/* cartao do mapa; */
+.mapa-cartao {
+  display: grid;
+  gap: .45rem;
+  justify-items: start;
+  padding: 1.2rem 1.2rem 1.4rem;
+  border-top: 1px solid var(--linha);
+}
+.mapa-cartao .mao {
+  font-size: 1.4rem;
+}
+.mapa-cartao h3 {
+  margin: 0; /* tira a margem dos h3 do horario; */
+  font-size: 1.4rem;
+  font-weight: 300;
+}
+.mapa-botoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-top: .4rem;
+}
+.mapa-botoes .botao {
+  padding: .7rem 1.3rem;
+}
+
+/* tablet e computador; */
+@media (min-width: 700px) {
+  .fotos-grelha {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+}
+@media (min-width: 1100px) {
+  .horario {
+    padding: 6.5rem 0;
+  }
+  .horario-grelha {
+    grid-template-columns: 470px 1fr;
+    gap: 4.5rem;
+  }
+  .mapa-link {
+    height: 520px;
+  }
+  .mapa iframe {
+    top: -40%; /* o mapa sobe -> a pizzaria fica mais acima e o cartao nao tapa o pino; */
+    height: 140%; /* assim os creditos do Google continuam a aparecer em baixo; */
+  }
+  .mapa-pino {
+    top: 30%;
+  }
+  .mapa-cartao {
+    position: absolute; /* no computador o cartao fica por cima do mapa, em baixo; */
+    left: 20px;
+    bottom: 36px; /* para nao tapar os creditos do Google; */
+    width: 300px;
+    border: 1px solid var(--linha);
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--papel) 96%, transparent);
+    box-shadow: 0 12px 30px rgba(43, 39, 36, .14);
+  }
+}

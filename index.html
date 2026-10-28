@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mamma Mia | Pizzaria na Covilhã</title>
+  <meta name="description" content="Pizzas, massas e saladas no centro da Covilhã. Comer no local, take away e entrega.">
+  <meta name="theme-color" content="#E8E2D7">
+
+  <!-- letras -> Montserrat é a do menu deles e a Caveat é para as notas a mao; -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&family=Caveat:wght@700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="estilos.css?v=5">
+</head>
+<body>
+
+  <!-- cores e filtros das pizzas -> estao aqui uma vez e todas as pizzas usam; -->
+  <svg class="defs-pizza" width="0" height="0" aria-hidden="true" focusable="false">
+    <defs>
+      <radialGradient id="pMadeira"><stop offset="0" stop-color="#C99566"/><stop offset=".85" stop-color="#AE7743"/><stop offset="1" stop-color="#8A5A2E"/></radialGradient>
+      <radialGradient id="pMassa"><stop offset="0" stop-color="#F3D9A4"/><stop offset=".84" stop-color="#EDCB8E"/><stop offset=".9" stop-color="#DCA964"/><stop offset=".96" stop-color="#BC7D40"/><stop offset="1" stop-color="#93582A"/></radialGradient>
+      <linearGradient id="pCalzone" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EDC88A"/><stop offset=".55" stop-color="#D59E58"/><stop offset="1" stop-color="#A9692F"/></linearGradient>
+      <radialGradient id="pMolhoTomate"><stop offset="0" stop-color="#C4452B"/><stop offset=".85" stop-color="#A5321D"/><stop offset="1" stop-color="#7E2213"/></radialGradient>
+      <radialGradient id="pMolhoCarbonara"><stop offset="0" stop-color="#F6ECD5"/><stop offset="1" stop-color="#E0CBA0"/></radialGradient>
+      <radialGradient id="pMolhoBolonhesa"><stop offset="0" stop-color="#9E4325"/><stop offset="1" stop-color="#6A2914"/></radialGradient>
+      <radialGradient id="pQueijo" cx=".45" cy=".42"><stop offset="0" stop-color="#FDF1CF"/><stop offset=".6" stop-color="#F7E1A8"/><stop offset="1" stop-color="#EAC27C"/></radialGradient>
+      <radialGradient id="pPep" cx=".45" cy=".4"><stop offset="0" stop-color="#C54D32"/><stop offset=".6" stop-color="#A43620"/><stop offset=".88" stop-color="#7B2314"/><stop offset="1" stop-color="#58160A"/></radialGradient>
+      <radialGradient id="pSalame" cx=".45" cy=".4"><stop offset="0" stop-color="#C86A62"/><stop offset=".8" stop-color="#A84B44"/><stop offset="1" stop-color="#7C302A"/></radialGradient>
+      <linearGradient id="pFolha" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5E903B"/><stop offset="1" stop-color="#2C5520"/></linearGradient>
+      <linearGradient id="pFolhaEscura" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3E6A2C"/><stop offset="1" stop-color="#1F3D17"/></linearGradient>
+      <radialGradient id="pGema" cx=".42" cy=".38"><stop offset="0" stop-color="#FDD265"/><stop offset=".7" stop-color="#F2A92A"/><stop offset="1" stop-color="#D98512"/></radialGradient>
+      <radialGradient id="pAzeitona" cx=".4" cy=".35"><stop offset="0" stop-color="#4A4038"/><stop offset="1" stop-color="#12100D"/></radialGradient>
+      <linearGradient id="pCogumelo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D2B48C"/><stop offset="1" stop-color="#EBDDC2"/></linearGradient>
+      <linearGradient id="pFiambre" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F0BAB1"/><stop offset="1" stop-color="#D88880"/></linearGradient>
+      <linearGradient id="pBacon" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9C3C27"/><stop offset=".35" stop-color="#B9563C"/><stop offset=".5" stop-color="#F1D2B2"/><stop offset=".65" stop-color="#B14E36"/><stop offset="1" stop-color="#8A311F"/></linearGradient>
+      <linearGradient id="pAnanas" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FCE68A"/><stop offset="1" stop-color="#E6B436"/></linearGradient>
+      <linearGradient id="pCamarao" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FBC29D"/><stop offset=".5" stop-color="#F28A5C"/><stop offset="1" stop-color="#E06A3A"/></linearGradient>
+      <linearGradient id="pSalmao" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F9AE8E"/><stop offset="1" stop-color="#E9744F"/></linearGradient>
+      <radialGradient id="pTomate" cx=".45" cy=".42"><stop offset="0" stop-color="#F06A4E"/><stop offset=".8" stop-color="#D23B25"/><stop offset="1" stop-color="#A82614"/></radialGradient>
+      <linearGradient id="pPimVerde" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6DAA45"/><stop offset="1" stop-color="#2E6A22"/></linearGradient>
+      <linearGradient id="pPimVermelho" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EE6448"/><stop offset="1" stop-color="#B02A17"/></linearGradient>
+      <radialGradient id="pBurrata" cx=".4" cy=".35"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".75" stop-color="#F6F1E6"/><stop offset="1" stop-color="#E4DACA"/></radialGradient>
+      <radialGradient id="pBrilho"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".55"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+
+      <!-- madeira -> ruido esticado para os lados parece as linhas da tabua; -->
+      <filter id="pVeios" x="0" y="0" width="100%" height="100%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.005 0.11" numOctaves="3" seed="7" result="n"/>
+        <feColorMatrix in="n" type="matrix" values="0 0 0 0 .3  0 0 0 0 .17  0 0 0 0 .06  0 0 0 1.6 -.6" result="v"/>
+        <feComposite in="v" in2="SourceGraphic" operator="in" result="vc"/>
+        <feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="vc"/></feMerge>
+      </filter>
+      <!-- grao da massa -> sem isto parecia plastico; -->
+      <filter id="pGrao" x="0" y="0" width="100%" height="100%">
+        <feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="2" seed="3" result="n"/>
+        <feColorMatrix in="n" type="matrix" values="0 0 0 0 .35  0 0 0 0 .2  0 0 0 0 .08  0 0 0 .9 -.35" result="g"/>
+        <feComposite in="g" in2="SourceGraphic" operator="in" result="gc"/>
+        <feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="gc"/></feMerge>
+      </filter>
+      <!-- bordas tortas -> o molho e o queijo nao ficam circulos perfeitos; -->
+      <filter id="pOrganico" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="fractalNoise" baseFrequency=".018" numOctaves="2" seed="2" result="n"/>
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="6" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+      <filter id="pDesfoque" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="3"/></filter>
+      <filter id="pDesfoqueLeve" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="1.1"/></filter>
+      <filter id="pSombraChao" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="11"/></filter>
+      <!-- sombra dos ingredientes -> parece que estao em cima do queijo; -->
+      <filter id="pSombra" x="-10%" y="-10%" width="120%" height="120%"><feDropShadow dx="0" dy="2" stdDeviation="1.6" flood-color="#3A1A0A" flood-opacity=".4"/></filter>
+    </defs>
+  </svg>
+
+  <!-- barra de cima -> esta sempre a vista para ligar ou ir ao menu; -->
+  <header class="barra">
+    <a class="logo" href="#inicio">MAMMA MIA</a>
+    <nav class="links" aria-label="Secções">
+      <a href="#menu" data-t="menu">Menu</a>
+      <a class="so-pc" href="#pedir" data-t="comoPedir">Como pedir</a>
+      <a class="so-pc" href="#horario" data-t="horario">Horário</a>
+      <a class="so-pc" href="#onde" data-t="onde">Onde estamos</a>
+      <button class="lingua" id="lingua" type="button" aria-label="Mudar a língua">EN</button>
+      <a class="botao tomate so-pc" data-ligar href="#" data-t="ligar">Ligar</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- inicio; -->
+    <section class="inicio" id="inicio">
+      <canvas class="farinha" id="farinha" aria-hidden="true"></canvas>
+      <div class="wrap inicio-grelha">
+        <div class="inicio-texto">
+          <p class="estado" id="estado"><span class="ponto"></span><span class="estado-texto">…</span></p>
+          <h1 data-texto="inicio.titulo"></h1>
+          <p class="frase" data-texto="inicio.frase"></p>
+          <div class="botoes">
+            <a class="botao tomate" data-ligar href="#"><span data-t="ligar">Ligar</span> <span data-fixo></span></a>
+            <a class="botao linha" href="#menu" data-t="verMenu">Ver o menu</a>
+          </div>
+          <ul class="servicos">
+            <li data-t="servLocal">Comer no local</li>
+            <li data-t="servTake">Take away</li>
+            <li data-t="servEntrega">Entrega em casa</li>
+          </ul>
+        </div>
+
+        <!-- pizza do inicio -> os ingredientes caem e sai vapor; -->
+        <figure class="pizza-caixa">
+          <svg class="pizza" viewBox="-10 0 540 620" role="img" aria-label="Pizza acabada de sair do forno">
+            <g class="vapor">
+              <path d="M200 150 C 182 120, 222 100, 204 70 S 216 30, 204 8"/>
+              <path d="M262 140 C 244 112, 284 92, 266 60 S 278 22, 266 0"/>
+              <path d="M322 150 C 304 120, 344 100, 326 70 S 338 30, 326 8"/>
+            </g>
+            <g transform="translate(0 80)" id="baseInicio"></g>
+            <g transform="translate(0 80)" id="ingInicio"></g>
+          </svg>
+          <figcaption class="nota-mao" data-texto="inicio.nota"></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- sugestoes -> as pizzas escolhem-se no site.json; -->
+    <section class="sugestoes">
+      <div class="wrap">
+        <div class="cabecalho">
+          <h2 data-texto="sugestoes.titulo"></h2>
+          <p class="mao" data-texto="sugestoes.nota"></p>
+        </div>
+        <div class="cartoes" id="cartoes"></div>
+      </div>
+    </section>
+
+    <!-- menu; -->
+    <section class="menu" id="menu">
+      <div class="wrap">
+        <div class="cabecalho">
+          <h2 data-t="oMenu">O menu</h2>
+          <p class="cinza" data-t="iva">Preços com IVA incluído.</p>
+        </div>
+
+        <div class="ferramentas">
+          <label class="pesquisa">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="6"/><path d="M14 14 L18 18"/></svg>
+            <input id="pesquisa" type="search" autocomplete="off" data-t-placeholder="procurar">
+          </label>
+          <div class="filtros" id="filtros"></div>
+        </div>
+
+        <div class="separadores" id="separadores" role="tablist" data-t-aria="categorias"></div>
+
+        <div class="menu-grelha">
+          <div>
+            <p class="mao nota-categoria" id="notaCategoria" hidden></p>
+            <div class="lista" id="lista" role="tabpanel" aria-live="polite"></div>
+          </div>
+
+          <!-- pizza do lado -> muda com a pizza escolhida; -->
+          <aside class="vista" id="vista" aria-live="polite">
+            <svg class="vista-pizza" id="vistaPizza" viewBox="-10 -10 540 550" role="img">
+              <g class="vista-escala" id="vistaEscala">
+                <g id="baseVista"></g>
+                <g id="ingVista"></g>
+              </g>
+            </svg>
+            <div class="vista-info">
+              <p class="mao" id="vistaAjuda"></p>
+              <h3 id="vistaNome"></h3>
+              <div class="tamanhos-botoes" id="tamanhosBotoes" role="radiogroup" data-t-aria="tamanho"></div>
+              <p class="vista-preco" id="vistaPreco"></p>
+              <p class="cinza" id="vistaIng"></p>
+            </div>
+          </aside>
+        </div>
+
+        <p class="cinza rodape-menu" data-t="intolerancia">Tem alguma intolerância alimentar? Diga-nos quando fizer o pedido.</p>
+      </div>
+    </section>
+
+    <!-- como pedir -> fundo escuro para o telefone dar nas vistas; -->
+    <section class="pedir" id="pedir">
+      <div class="wrap">
+        <div class="cabecalho">
+          <h2 data-texto="pedir.titulo"></h2>
+          <p class="mao" data-texto="pedir.nota"></p>
+        </div>
+        <div class="opcoes" id="opcoes"></div>
+        <div class="telefone">
+          <div>
+            <a class="numero" data-ligar href="#"><span data-fixo></span></a>
+            <p><span data-t="ou">ou</span> <a data-ligar-movel href="#"><span data-movel></span></a> (<span data-t="telemovel">telemóvel</span>)</p>
+          </div>
+          <a class="botao claro" data-ligar href="#" data-t="ligarAgora">Ligar agora</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- fotos -> so aparece se houver fotos no site.json; -->
+    <section class="fotos" id="fotos" hidden>
+      <div class="wrap">
+        <h2 data-t="aCasa">A nossa casa</h2>
+        <div class="fotos-grelha" id="fotosGrelha"></div>
+      </div>
+    </section>
+
+    <!-- horario e mapa; -->
+    <section class="horario" id="horario">
+      <div class="wrap horario-grelha">
+        <div>
+          <h2 data-t="horario">Horário</h2>
+          <ul class="semana" id="semana"></ul>
+          <div class="turnos" id="turnos"></div>
+          <p class="cinza" id="fechadoTexto"></p>
+
+          <h3 id="onde" data-t="onde">Onde estamos</h3>
+          <p id="morada"></p>
+          <ul class="contactos">
+            <li><a data-ligar href="#"><span data-t="telefone">Telefone</span> <span data-fixo></span></a></li>
+            <li><a data-ligar-movel href="#"><span data-t="telemovelM">Telemóvel</span> <span data-movel></span></a></li>
+            <li><a data-instagram href="#" target="_blank" rel="noopener">Instagram</a></li>
+          </ul>
+        </div>
+        <!-- mapa -> nao se arrasta, carregar abre o Google Maps; -->
+        <div class="mapa">
+          <a class="mapa-link" data-mapa-link href="#" target="_blank" rel="noopener" data-t-aria="abrirMapa">
+            <iframe id="mapa" title="Mapa" loading="lazy" referrerpolicy="no-referrer-when-downgrade" tabindex="-1"></iframe>
+            <span class="mapa-esbatido"></span>
+            <span class="mapa-pino" aria-hidden="true">
+              <span class="pino-onda"></span>
+              <svg viewBox="0 0 40 52"><path d="M20 51 C 20 51, 2 31, 2 19 a18 18 0 0 1 36 0 c0 12 -18 32 -18 32 z" fill="#B23A26" stroke="#8F2C1C" stroke-width="1.5"/><circle cx="20" cy="19" r="7" fill="#F5F1EA"/></svg>
+            </span>
+          </a>
+
+          <!-- cartao do mapa -> morada, estado e os botoes; -->
+          <div class="mapa-cartao">
+            <p class="mao" data-t="estamosAqui">estamos aqui</p>
+            <h3>Mamma Mia</h3>
+            <p class="cinza" id="mapaMorada"></p>
+            <p class="estado" id="mapaEstado"><span class="ponto"></span><span class="estado-texto">…</span></p>
+            <div class="mapa-botoes">
+              <a class="botao tomate" data-direcoes href="#" target="_blank" rel="noopener" data-t="comoChegar">Como chegar</a>
+              <a class="botao linha" data-ligar href="#" data-t="ligar">Ligar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="wrap rodape-linha">
+      <span class="logo">MAMMA MIA</span>
+      <nav class="rodape-links">
+        <a data-instagram href="#" target="_blank" rel="noopener">Instagram</a>
+        <a id="linkFacebook" href="#" target="_blank" rel="noopener">Facebook</a>
+      </nav>
+      <span data-t="wifi">Wi-Fi disponível</span>
+    </div>
+  </footer>
+
+  <!-- barra de baixo -> so no telemovel, para ter os botoes perto do dedo; -->
+  <div class="barra-baixo">
+    <a class="botao tomate" data-ligar href="#" data-t="ligar">Ligar</a>
+    <a class="botao linha" data-direcoes href="#" target="_blank" rel="noopener" data-t="comoChegar">Como chegar</a>
+  </div>
+
+  <!-- foto em grande; -->
+  <dialog class="foto-grande" id="fotoGrande">
+    <img id="fotoGrandeImg" alt="">
+    <button type="button" id="fecharFoto" data-t-aria="fechar">✕</button>
+  </dialog>
+
+  <!-- o pizza.js vem primeiro -> o site.js usa as funcoes dele; -->
+  <script src="pizza.js?v=5"></script>
+  <script src="site.js?v=5"></script>
+</body>
+</html>

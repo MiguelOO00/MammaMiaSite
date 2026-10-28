@@ -1,0 +1,122 @@
+{
+  "contactos": {
+    "nome": "Mamma Mia",
+    "morada": "Rua Marquês de Ávila e Bolama, 6",
+    "cidade": "6200 Covilhã",
+    "latitude": 40.277426,
+    "longitude": -7.5106365,
+    "telefone": "275 336 107",
+    "telemovel": "967 538 663",
+    "instagram": "mammamia_covilha",
+    "facebook": "https://www.facebook.com/mammamiacovilha/"
+  },
+  "horario": {
+    "segunda": false,
+    "terca": true,
+    "quarta": true,
+    "quinta": true,
+    "sexta": true,
+    "sabado": true,
+    "domingo": false,
+    "almocoAbre": "12:00",
+    "almocoFecha": "14:30",
+    "jantarAbre": "19:00",
+    "jantarFecha": "22:30"
+  },
+  "inicio": {
+    "titulo": {
+      "pt": "Pizza ao forno, no centro da Covilhã.",
+      "en": "Oven-baked pizza in the heart of Covilhã."
+    },
+    "frase": {
+      "pt": "Coma cá, leve para casa ou receba em casa. Ligue-nos e a pizza fica pronta à sua espera.",
+      "en": "Eat in, take away or have it delivered. Give us a call and your pizza will be ready and waiting."
+    },
+    "nota": {
+      "pt": "acabada de sair do forno",
+      "en": "fresh out of the oven"
+    }
+  },
+  "sugestoes": {
+    "titulo": {
+      "pt": "As nossas sugestões",
+      "en": "Our suggestions"
+    },
+    "nota": {
+      "pt": "para quem não sabe o que escolher",
+      "en": "for when you can't decide"
+    },
+    "pizzas": [
+      {
+        "nome": "MammaMia",
+        "texto": {
+          "pt": "Chourição, bacon, ovo escalfado, pimentos e o nosso molho MammaMia.",
+          "en": "Chorizo, bacon, poached egg, peppers and our own MammaMia sauce."
+        },
+        "foto": ""
+      },
+      {
+        "nome": "Burrata",
+        "texto": {
+          "pt": "Fiambre de trufa preta, tomate e uma burrata inteira no meio.",
+          "en": "Black truffle ham, tomato and a whole burrata in the middle."
+        },
+        "foto": ""
+      },
+      {
+        "nome": "Prosciutto",
+        "texto": {
+          "pt": "Presunto de Parma, pérolas de queijo com figo, manjericão e balsâmico.",
+          "en": "Parma ham, cheese pearls with fig, basil and balsamic."
+        },
+        "foto": ""
+      }
+    ]
+  },
+  "pedir": {
+    "titulo": {
+      "pt": "Como pedir",
+      "en": "How to order"
+    },
+    "nota": {
+      "pt": "é só ligar",
+      "en": "just give us a call"
+    },
+    "opcoes": [
+      {
+        "titulo": {
+          "pt": "Comer cá",
+          "en": "Eat in"
+        },
+        "texto": {
+          "pt": "De terça a sábado, ao almoço e ao jantar. Temos Wi-Fi para quem precisar.",
+          "en": "Tuesday to Saturday, lunch and dinner. Free Wi-Fi."
+        },
+        "icone": "mesa"
+      },
+      {
+        "titulo": {
+          "pt": "Levar para casa",
+          "en": "Take away"
+        },
+        "texto": {
+          "pt": "Ligue, diga-nos o que quer e venha buscar. A pizza fica pronta à sua espera.",
+          "en": "Call us, tell us what you'd like and come and collect it. It'll be ready and waiting."
+        },
+        "icone": "saco"
+      },
+      {
+        "titulo": {
+          "pt": "Entrega em casa",
+          "en": "Delivery"
+        },
+        "texto": {
+          "pt": "Também entregamos em casa. Ligue e combinamos a morada e a hora.",
+          "en": "We also deliver. Call us and we'll arrange the address and time."
+        },
+        "icone": "casa"
+      }
+    ]
+  },
+  "fotos": []
+}

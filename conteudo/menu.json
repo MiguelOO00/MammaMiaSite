@@ -1,0 +1,672 @@
+{
+  "categorias": [
+    {
+      "id": "pizzas",
+      "nome": {
+        "pt": "Pizzas",
+        "en": "Pizzas"
+      },
+      "itens": [
+        {
+          "nome": {
+            "pt": "Rústica",
+            "en": ""
+          },
+          "ingredientes": {
+            "pt": "Molho de tomate, rúcula, mozzarella fresca, tomate fresco, orégãos",
+            "en": "Tomato sauce, rocket, fresh mozzarella, fresh tomato, oregano"
+          },
+          "pequena": 11,
+          "media": 14,
+          "familiar": 18.5,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Margherita",
+            "en": ""
+          },
+          "ingredientes": {
+            "pt": "Molho de tomate, mozzarella, fiambre, orégãos",
+            "en": "Tomato sauce, mozzarella, ham, oregano"
+          },
+          "pequena": 8,
+          "media": 11,
+          "familiar": 15.5,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "MammaMia",
+            "en": ""
+          },
+          "ingredientes": {
+            "pt": "Molho de tomate, mozzarella, chourição, bacon, ovo escalfado, pimentos, molho MammaMia",
+            "en": "Tomato sauce, mozzarella, chorizo, bacon, poached egg, peppers, MammaMia sauce"
+          },
+          "pequena": 9,
+          "media": 13,
+          "familiar": 17.5,
+          "daCasa": true
+        },
+        {
+          "nome": {
+            "pt": "Burrata",
+            "en": ""
+          },
+          "ingredientes": {
+            "pt": "Molho de tomate, mozzarella, fiambre de trufa preta, tomate, burrata, molho MammaMia",
+            "en": "Tomato sauce, mozzarella, black truffle ham, tomato, burrata, MammaMia sauce"
+          },
+          "pequena": 13.5,
+          "media": 18,
+          "familiar": null,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Prosciutto",
+            "en": ""
+          },
+          "ingredientes": {
+            "pt": "Molho de tomate, presunto de Parma, pérolas de queijo com figo, azeitonas, manjericão, molho balsâmico",
+            "en": "Tomato sauce, Parma ham, cheese pearls with fig, olives, basil, balsamic glaze"
+          },
+          "pequena": 12,
+          "media": 15,
+          "familiar": 19.5,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Philadelphia",
+            "en": ""
+          },
+          "ingredientes": {
+            "pt": "Molho de tomate, mozzarella, salmão fumado, cebola frita crocante, queijo Philadelphia, molho agridoce",
+            "en": "Tomato sauce, mozzarella, smoked salmon, crispy fried onion, Philadelphia cheese, sweet and sour sauce"
+          },
+          "pequena": 13,
+          "media": 16,
+          "familiar": 19.5,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Hawaii",
+            "en": ""
+          },
+          "ingredientes": {
+            "pt": "Molho de tomate, mozzarella, fiambre, bacon, ananás, orégãos",
+            "en": "Tomato sauce, mozzarella, ham, bacon, pineapple, oregano"
+          },
+          "pequena": 9,
+          "media": 12,
+          "familiar": 16.5,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Estrela",
+            "en": ""
+          },
+          "ingredientes": {
+            "pt": "Molho de tomate, mozzarella, chouriça, ovo cozido, azeitonas, cebola roxa, azeite e alho",
+            "en": "Tomato sauce, mozzarella, chouriço, boiled egg, olives, red onion, olive oil and garlic"
+          },
+          "pequena": 9,
+          "media": 13,
+          "familiar": 17.5,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Carbonara",
+            "en": ""
+          },
+          "ingredientes": {
+            "pt": "Molho carbonara, mozzarella, bacon, salame, cogumelos frescos, azeitonas, orégãos",
+            "en": "Carbonara sauce, mozzarella, bacon, salami, fresh mushrooms, olives, oregano"
+          },
+          "pequena": 9,
+          "media": 13,
+          "familiar": 17.5,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "4 Formaggio",
+            "en": ""
+          },
+          "ingredientes": {
+            "pt": "Molho de tomate, mozzarella, queijo da serra, brie, gorgonzola, orégãos",
+            "en": "Tomato sauce, mozzarella, Serra da Estrela cheese, brie, gorgonzola, oregano"
+          },
+          "pequena": 10,
+          "media": 13,
+          "familiar": 17.5,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Calabresa",
+            "en": ""
+          },
+          "ingredientes": {
+            "pt": "Molho de tomate, mozzarella, pepperoni, cebola roxa, azeitonas, orégãos",
+            "en": "Tomato sauce, mozzarella, pepperoni, red onion, olives, oregano"
+          },
+          "pequena": 9,
+          "media": 13,
+          "familiar": 17.5,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Tuna",
+            "en": ""
+          },
+          "ingredientes": {
+            "pt": "Molho de tomate, mozzarella, azeitonas, atum, cebola roxa, orégãos",
+            "en": "Tomato sauce, mozzarella, olives, tuna, red onion, oregano"
+          },
+          "pequena": 9,
+          "media": 12,
+          "familiar": 16.5,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Carnívora",
+            "en": "Meat lovers"
+          },
+          "ingredientes": {
+            "pt": "Molho de tomate, mozzarella, chourição, fiambre, bacon, orégãos",
+            "en": "Tomato sauce, mozzarella, chorizo, ham, bacon, oregano"
+          },
+          "pequena": 9,
+          "media": 12,
+          "familiar": 16.5,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Napolitana",
+            "en": ""
+          },
+          "ingredientes": {
+            "pt": "Molho de tomate, mozzarella, atum, camarão, ananás, orégãos",
+            "en": "Tomato sauce, mozzarella, tuna, prawns, pineapple, oregano"
+          },
+          "pequena": 10,
+          "media": 14,
+          "familiar": 18.5,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Belusi",
+            "en": ""
+          },
+          "ingredientes": {
+            "pt": "Molho de tomate, mozzarella, salmão fumado, queijo brie, orégãos",
+            "en": "Tomato sauce, mozzarella, smoked salmon, brie, oregano"
+          },
+          "pequena": 11,
+          "media": 14,
+          "familiar": 18.5,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Campesina",
+            "en": ""
+          },
+          "ingredientes": {
+            "pt": "Molho de tomate, mozzarella, tomate cherry, manjericão, parmesão, azeite, orégãos",
+            "en": "Tomato sauce, mozzarella, cherry tomatoes, basil, parmesan, olive oil, oregano"
+          },
+          "pequena": 10,
+          "media": 13,
+          "familiar": 17.5,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Portuguesa",
+            "en": "Portuguese"
+          },
+          "ingredientes": {
+            "pt": "Molho de tomate, mozzarella, fiambre, cogumelos frescos, ovo escalfado, orégãos",
+            "en": "Tomato sauce, mozzarella, ham, fresh mushrooms, poached egg, oregano"
+          },
+          "pequena": 9,
+          "media": 12,
+          "familiar": 16.5,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Amália",
+            "en": ""
+          },
+          "ingredientes": {
+            "pt": "Molho de tomate, mozzarella, bacalhau, ovo cozido, alho, salsa, azeitonas, cebola roxa",
+            "en": "Tomato sauce, mozzarella, salt cod, boiled egg, garlic, parsley, olives, red onion"
+          },
+          "pequena": 10,
+          "media": 13,
+          "familiar": 17.5,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Vegetariana",
+            "en": "Vegetarian"
+          },
+          "ingredientes": {
+            "pt": "Molho de tomate, mozzarella, cogumelos frescos, brócolos, milho, cebola roxa, orégãos",
+            "en": "Tomato sauce, mozzarella, fresh mushrooms, broccoli, sweetcorn, red onion, oregano"
+          },
+          "pequena": 9,
+          "media": 12,
+          "familiar": 16.5,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Camarão",
+            "en": "Prawn"
+          },
+          "ingredientes": {
+            "pt": "Molho de tomate, mozzarella, camarão, delícias do mar, parmesão, orégãos",
+            "en": "Tomato sauce, mozzarella, prawns, crab sticks, parmesan, oregano"
+          },
+          "pequena": 11,
+          "media": 14,
+          "familiar": 18.5,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Frango",
+            "en": "Chicken"
+          },
+          "ingredientes": {
+            "pt": "Molho de tomate, mozzarella, frango desfiado, milho, alho, orégãos",
+            "en": "Tomato sauce, mozzarella, pulled chicken, sweetcorn, garlic, oregano"
+          },
+          "pequena": 10,
+          "media": 13,
+          "familiar": 17.5,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Bolonhesa",
+            "en": ""
+          },
+          "ingredientes": {
+            "pt": "Molho bolonhesa, carne picada de novilho, mozzarella, ovo cozido, orégãos",
+            "en": "Bolognese sauce, minced beef, mozzarella, boiled egg, oregano"
+          },
+          "pequena": 9,
+          "media": 13,
+          "familiar": 17.5,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Dimar",
+            "en": ""
+          },
+          "ingredientes": {
+            "pt": "Molho de tomate, mozzarella, fiambre, camarão, delícias do mar, cebola frita, miolo de mexilhão",
+            "en": "Tomato sauce, mozzarella, ham, prawns, crab sticks, fried onion, mussels"
+          },
+          "pequena": 12,
+          "media": 14,
+          "familiar": 19.5,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Calzone fechada",
+            "en": "Closed calzone"
+          },
+          "ingredientes": {
+            "pt": "Molho de tomate, mozzarella, fiambre, camarão, delícias do mar, espinafres, ovo cozido",
+            "en": "Tomato sauce, mozzarella, ham, prawns, crab sticks, spinach, boiled egg"
+          },
+          "pequena": 11,
+          "media": 14,
+          "familiar": 18.5,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Calzone aberta",
+            "en": "Open calzone"
+          },
+          "ingredientes": {
+            "pt": "Molho de tomate, mozzarella, fiambre, camarão, delícias do mar, espinafres, ovo cozido",
+            "en": "Tomato sauce, mozzarella, ham, prawns, crab sticks, spinach, boiled egg"
+          },
+          "pequena": 12,
+          "media": 15,
+          "familiar": 19.5,
+          "daCasa": false
+        }
+      ]
+    },
+    {
+      "id": "entradas",
+      "nome": {
+        "pt": "Entradas",
+        "en": "Starters"
+      },
+      "itens": [
+        {
+          "nome": {
+            "pt": "Pão de alho (2 un.)",
+            "en": "Garlic bread (2 pcs)"
+          },
+          "ingredientes": {
+            "pt": "Manteiga de alho, mozzarella, bacon",
+            "en": "Garlic butter, mozzarella, bacon"
+          },
+          "preco": 2.6,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Asinhas de frango (6 un.)",
+            "en": "Chicken wings (6 pcs)"
+          },
+          "ingredientes": {
+            "pt": "Com molho barbecue",
+            "en": "With barbecue sauce"
+          },
+          "preco": 4,
+          "daCasa": false
+        }
+      ]
+    },
+    {
+      "id": "massas",
+      "nome": {
+        "pt": "Massas",
+        "en": "Pasta"
+      },
+      "itens": [
+        {
+          "nome": {
+            "pt": "Lasanha bolonhesa",
+            "en": "Lasagne bolognese"
+          },
+          "ingredientes": {
+            "pt": "",
+            "en": ""
+          },
+          "preco": 11,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Lasanha vegetariana",
+            "en": "Vegetable lasagne"
+          },
+          "ingredientes": {
+            "pt": "Espinafres, cebola roxa, tomate cherry, pimentos, cogumelos frescos",
+            "en": "Spinach, red onion, cherry tomatoes, peppers, fresh mushrooms"
+          },
+          "preco": 14,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Spaghetti bolonhesa",
+            "en": "Spaghetti bolognese"
+          },
+          "ingredientes": {
+            "pt": "",
+            "en": ""
+          },
+          "preco": 9,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Tagliatelle carbonara",
+            "en": ""
+          },
+          "ingredientes": {
+            "pt": "Bacon, cogumelos frescos, molho carbonara",
+            "en": "Bacon, fresh mushrooms, carbonara sauce"
+          },
+          "preco": 10,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Spaghetti MammaMia",
+            "en": ""
+          },
+          "ingredientes": {
+            "pt": "Espinafres, pimentos, cogumelos, pimenta preta, camarão, molho de natas",
+            "en": "Spinach, peppers, mushrooms, black pepper, prawns, cream sauce"
+          },
+          "preco": 11,
+          "daCasa": true
+        },
+        {
+          "nome": {
+            "pt": "Pasta Nero al forno",
+            "en": ""
+          },
+          "ingredientes": {
+            "pt": "Camarão, fiambre, molho de tomate, queijo gratinado",
+            "en": "Prawns, ham, tomato sauce, gratinated cheese"
+          },
+          "preco": 12,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Farfalle 4 formaggio",
+            "en": ""
+          },
+          "ingredientes": {
+            "pt": "Cogumelos frescos, molho de 4 queijos, tomate cherry, bacon",
+            "en": "Fresh mushrooms, four-cheese sauce, cherry tomatoes, bacon"
+          },
+          "preco": 11,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Fusilli Itália",
+            "en": ""
+          },
+          "ingredientes": {
+            "pt": "Salame, cebola caramelizada crocante, carne picada de novilho",
+            "en": "Salami, crispy caramelised onion, minced beef"
+          },
+          "preco": 10,
+          "daCasa": false
+        }
+      ]
+    },
+    {
+      "id": "pratos",
+      "nome": {
+        "pt": "Bife e francesinha",
+        "en": "Steak and francesinha"
+      },
+      "itens": [
+        {
+          "nome": {
+            "pt": "Bife da vazia grelhado",
+            "en": "Grilled sirloin steak"
+          },
+          "ingredientes": {
+            "pt": "Com manteiga de alho",
+            "en": "With garlic butter"
+          },
+          "preco": 16,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Francesinha",
+            "en": ""
+          },
+          "ingredientes": {
+            "pt": "De peru ou de vitela",
+            "en": "Turkey or veal"
+          },
+          "preco": 14,
+          "daCasa": false
+        }
+      ]
+    },
+    {
+      "id": "saladas",
+      "nome": {
+        "pt": "Saladas",
+        "en": "Salads"
+      },
+      "itens": [
+        {
+          "nome": {
+            "pt": "Salada de alface e tomate",
+            "en": "Lettuce and tomato salad"
+          },
+          "ingredientes": {
+            "pt": "",
+            "en": ""
+          },
+          "preco": 3,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Salada de frango",
+            "en": "Chicken salad"
+          },
+          "ingredientes": {
+            "pt": "Alface, rúcula, tomate cherry, frango desfiado, azeite, creme balsâmico",
+            "en": "Lettuce, rocket, cherry tomatoes, pulled chicken, olive oil, balsamic cream"
+          },
+          "preco": 6.5,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Salada de verão",
+            "en": "Summer salad"
+          },
+          "ingredientes": {
+            "pt": "Alface, rúcula, tomate cherry, camarão, azeitonas, molho de iogurte",
+            "en": "Lettuce, rocket, cherry tomatoes, prawns, olives, yoghurt dressing"
+          },
+          "preco": 7.5,
+          "daCasa": false
+        }
+      ]
+    },
+    {
+      "id": "extras",
+      "nome": {
+        "pt": "Extras",
+        "en": "Extras"
+      },
+      "nota": {
+        "pt": "se trocar um ingrediente, paga o preço do novo",
+        "en": "swapping an ingredient costs the price of the new one"
+      },
+      "itens": [
+        {
+          "nome": {
+            "pt": "Carnes",
+            "en": "Meats"
+          },
+          "ingredientes": {
+            "pt": "Fiambre, bacon, salsichas, salame, carne picada, chourição, chouriça, pepperoni, frango, presunto",
+            "en": "Ham, bacon, sausages, salami, minced meat, chorizo, chouriço, pepperoni, chicken, Parma ham"
+          },
+          "pequena": 1,
+          "media": 2,
+          "familiar": 3,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Queijos",
+            "en": "Cheeses"
+          },
+          "ingredientes": {
+            "pt": "Cabra, brie, gorgonzola, queijo da serra, mozzarella, queijo vegan",
+            "en": "Goat's cheese, brie, gorgonzola, Serra da Estrela cheese, mozzarella, vegan cheese"
+          },
+          "pequena": 2,
+          "media": 3,
+          "familiar": 4,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Legumes",
+            "en": "Vegetables"
+          },
+          "ingredientes": {
+            "pt": "Cogumelos, cebola roxa, milho, azeitonas, pimentos, tomate cherry, brócolos, espinafres, ananás",
+            "en": "Mushrooms, red onion, sweetcorn, olives, peppers, cherry tomatoes, broccoli, spinach, pineapple"
+          },
+          "pequena": 1,
+          "media": 2,
+          "familiar": 3,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Peixe e marisco",
+            "en": "Fish and seafood"
+          },
+          "ingredientes": {
+            "pt": "Bacalhau, delícias do mar, salmão fumado, camarão, miolo de mexilhão",
+            "en": "Salt cod, crab sticks, smoked salmon, prawns, mussels"
+          },
+          "pequena": 2,
+          "media": 3,
+          "familiar": 4,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Burrata (unidade)",
+            "en": "Burrata (one)"
+          },
+          "ingredientes": {
+            "pt": "",
+            "en": ""
+          },
+          "preco": 5,
+          "daCasa": false
+        },
+        {
+          "nome": {
+            "pt": "Ovo cozido, escalfado ou frito",
+            "en": "Egg: boiled, poached or fried"
+          },
+          "ingredientes": {
+            "pt": "",
+            "en": ""
+          },
+          "preco": 1.2,
+          "daCasa": false
+        }
+      ]
+    }
+  ]
+}
