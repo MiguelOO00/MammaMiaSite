@@ -259,7 +259,11 @@ ul {
   }
   .barra {
     height: 84px;
-    padding: 0 max(96px, calc((100% - 1344px) / 2 + 96px)); /* em ecras muito largos o logo fica alinhado com o texto; */
+    padding: 0 40px; /* a barra vai de ponta a ponta -> nao segue a margem do texto da pagina; */
+  }
+  .rodape .wrap {
+    max-width: none;
+    padding: 0 40px; /* o rodape tambem vai de ponta a ponta, igual a barra de cima; */
   }
   .so-pc {
     display: inline-flex !important;
