@@ -19,6 +19,7 @@
   --tomate-escuro: #8F2C1C;
   --manjericao: #4F6B2F;
   --massa: #D9B57A;
+  --torrada: #DDD4C4; /* bege mais escuro -> so para separar as avaliacoes do resto; */
   --letra: "Montserrat", system-ui, sans-serif;
   --mao: "Caveat", "Comic Sans MS", cursive;
 }
@@ -1337,5 +1338,101 @@ ul {
     border-radius: 12px;
     background: color-mix(in srgb, var(--papel) 96%, transparent);
     box-shadow: 0 12px 30px rgba(43, 39, 36, .14);
+  }
+}
+
+/* ================================================================== */
+/* 7. AVALIACOES -> faixa a passar com as avaliacoes do Google; */
+/* ================================================================== */
+
+.avaliacoes {
+  padding: 4rem 0;
+  background: var(--torrada); /* fundo mais escuro -> a faixa destaca-se e os cartoes claros saltam a vista; */
+}
+.faixa {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); /* os cartoes aparecem e desaparecem esbatidos nas pontas; */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+.faixa-trilho,
+.faixa-copia {
+  display: flex;
+  width: max-content;
+}
+.faixa-trilho {
+  padding: .5rem 0;
+}
+.avaliacao {
+  flex: 0 0 280px;
+  display: flex;
+  flex-direction: column;
+  gap: .7rem;
+  margin-right: 16px; /* margem e nao gap -> assim as duas metades tem o mesmo tamanho e o -50% da a volta certinha; */
+  padding: 1.3rem;
+  background: var(--papel);
+  border: 1px solid var(--linha);
+  border-radius: 6px;
+  color: var(--tinta);
+  text-decoration: none;
+  transition: border-color .2s;
+}
+.avaliacao:hover {
+  border-color: var(--tinta);
+}
+.estrelas {
+  color: var(--tomate);
+  letter-spacing: .12em;
+  font-size: 1.05rem;
+}
+.estrelas .vazia {
+  color: var(--linha);
+}
+.avaliacao-texto {
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* so 4 linhas -> os cartoes ficam todos da mesma altura; */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: .95rem;
+  flex: 1;
+}
+.avaliacao-autor {
+  font-size: .85rem;
+  color: var(--cinza);
+}
+.avaliacao-autor b {
+  color: var(--tinta);
+  font-weight: 500;
+}
+.avaliacoes-fim {
+  margin-top: 2rem;
+}
+
+/* so roda para quem nao tem menos movimento ligado -> os outros fazem scroll com o dedo; */
+@media (prefers-reduced-motion: no-preference) {
+  .faixa-trilho {
+    animation: rodar var(--tempo, 70s) linear infinite;
+  }
+  .faixa:hover .faixa-trilho {
+    animation-play-state: paused; /* com o rato em cima para -> da para ler com calma; */
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .faixa {
+    overflow-x: auto;
+  }
+  .faixa-copia {
+    display: none;
+  }
+}
+@keyframes rodar {
+  to {
+    transform: translateX(-50%); /* anda metade -> a copia fica exatamente onde estava a primeira e recomeca sem se notar; */
+  }
+}
+
+/* computador -> cartoes maiores; */
+@media (min-width: 1100px) {
+  .avaliacao {
+    flex-basis: 360px;
   }
 }

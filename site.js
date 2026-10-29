@@ -12,7 +12,7 @@
 //  8. SUGESTOES       -> os tres cartoes;
 //  9. MENU            -> filtros, separadores, pesquisa e pratos;
 // 10. PIZZA DO LADO   -> a pizza que muda com o prato e o tamanho;
-// 11. COMO PEDIR E FOTOS;
+// 11. COMO PEDIR, FOTOS E AVALIACOES;
 // 12. EVENTOS         -> cliques e teclas;
 // 13. ARRANQUE        -> poe tudo a andar;
 
@@ -54,6 +54,11 @@ function SemAcentos(texto) {
 //as pizzas e os extras tem tres precos -> o resto so tem um;
 function TemTresPrecos(prato) {
   return prato.pequena !== undefined;
+}
+
+//as avaliacoes sao escritas pelas pessoas -> assim um < ou um & no texto nao estraga a pagina;
+function Escapar(texto) {
+  return String(texto).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
 //procura um prato pelo nome em portugues, em todas as categorias;
@@ -101,7 +106,7 @@ const Textos = {
     wifi: "Wi-Fi disponível",
     fechar: "Fechar",
     daCasa: "especialidade da casa",
-    naoHa: "não existe",
+    naoHa: "—",
     nada: "Não encontrámos nada. Experimente outra palavra.",
     todas: "Todas",
     vegetarianas: "Sem carne nem peixe",
@@ -121,6 +126,18 @@ const Textos = {
     diasNo: ["no domingo", "na segunda", "na terça", "na quarta", "na quinta", "na sexta", "no sábado"],
     diasAo: ["ao domingo", "à segunda", "à terça", "à quarta", "à quinta", "à sexta", "ao sábado"],
     fechados: "Estamos fechados {dias}.",
+    avaliacoesNota: "{nota} ★ em {total} avaliações no Google",
+    verTodas: "Ver todas no Google",
+    estrelas: "{n} de 5 estrelas",
+    hoje: "hoje",
+    ontem: "ontem",
+    haDias: "há {n} dias",
+    haSemana: "há 1 semana",
+    haSemanas: "há {n} semanas",
+    haMes: "há 1 mês",
+    haMeses: "há {n} meses",
+    haAno: "há 1 ano",
+    haAnos: "há {n} anos",
     tamanhos: ["Pequena", "Média", "Familiar"],
     diasCurtos: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"],
     diasLongos: ["domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado"]
@@ -175,6 +192,18 @@ const Textos = {
     diasNo: ["on Sunday", "on Monday", "on Tuesday", "on Wednesday", "on Thursday", "on Friday", "on Saturday"],
     diasAo: ["Sundays", "Mondays", "Tuesdays", "Wednesdays", "Thursdays", "Fridays", "Saturdays"],
     fechados: "We are closed on {dias}.",
+    avaliacoesNota: "{nota} ★ from {total} Google reviews",
+    verTodas: "See them all on Google",
+    estrelas: "{n} out of 5 stars",
+    hoje: "today",
+    ontem: "yesterday",
+    haDias: "{n} days ago",
+    haSemana: "1 week ago",
+    haSemanas: "{n} weeks ago",
+    haMes: "1 month ago",
+    haMeses: "{n} months ago",
+    haAno: "1 year ago",
+    haAnos: "{n} years ago",
     tamanhos: ["Small", "Medium", "Family"],
     diasCurtos: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
     diasLongos: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
@@ -691,7 +720,7 @@ function EscolherPrato(linha) {
 }
 
 //======================================================================;
-//11. COMO PEDIR E FOTOS;
+//11. COMO PEDIR, FOTOS E AVALIACOES;
 //======================================================================;
 
 //icones do como pedir -> a cor vem do css;
@@ -714,6 +743,47 @@ function DesenharComoPedir() {
       </div>`;
   }
   Id("opcoes").innerHTML = html;
+}
+
+//"2026-10-20" passa a "ha 1 semana" -> assim a data nunca fica desatualizada;
+function TempoDesde(data) {
+  const dias = Math.floor((new Date() - new Date(data)) / 86400000);
+  if (dias <= 0) return T("hoje");
+  if (dias === 1) return T("ontem");
+  if (dias < 7) return Preencher(T("haDias"), { n: dias });
+  if (dias < 14) return T("haSemana");
+  if (dias < 30) return Preencher(T("haSemanas"), { n: Math.floor(dias / 7) });
+  if (dias < 60) return T("haMes");
+  if (dias < 365) return Preencher(T("haMeses"), { n: Math.floor(dias / 30) });
+  if (dias < 730) return T("haAno");
+  return Preencher(T("haAnos"), { n: Math.floor(dias / 365) });
+}
+
+//faixa das avaliacoes -> as mesmas avaliacoes duas vezes seguidas, assim quando a primeira volta acaba a segunda ja esta no sitio e parece que nunca acaba;
+function DesenharAvaliacoes() {
+  const a = Site.avaliacoes;
+  if (!a || a.lista.length === 0) {
+    Id("avaliacoes").hidden = true; //sem avaliacoes no site.json a parte nao aparece;
+    return;
+  }
+  const nota = Lingua === "pt" ? String(a.nota).replace(".", ",") : String(a.nota);
+  Id("avaliacoesNota").textContent = Preencher(T("avaliacoesNota"), { nota: nota, total: a.total });
+  Id("avaliacoesLink").href = a.link;
+
+  let cartoes = "";
+  for (const r of a.lista) {
+    const cheias = "★".repeat(r.estrelas);
+    const vazias = "★".repeat(5 - r.estrelas);
+    const autor = r.nome ? `<b>${Escapar(r.nome)}</b> · ` : ""; //se nao tiver nome mostra so a data -> nao se inventa nome nenhum;
+    cartoes += `
+      <a class="avaliacao" href="${a.link}" target="_blank" rel="noopener">
+        <span class="estrelas" aria-label="${Preencher(T("estrelas"), { n: r.estrelas })}">${cheias}<span class="vazia">${vazias}</span></span>
+        <p class="avaliacao-texto">${Escapar(r.texto)}</p>
+        <p class="avaliacao-autor">${autor}${TempoDesde(r.data)}</p>
+      </a>`;
+  }
+  Id("faixa").innerHTML = cartoes + `<div class="faixa-copia" aria-hidden="true">${cartoes}</div>`; //a copia é escondida dos leitores de ecra -> senao liam tudo duas vezes;
+  Id("faixa").style.setProperty("--tempo", a.lista.length * 7 + "s"); //7 segundos por cartao -> com mais avaliacoes a faixa nao fica mais rapida;
 }
 
 //galeria -> so aparece se houver fotos no site.json;
@@ -857,6 +927,7 @@ function DesenharTudo() {
   DesenharBotoesTamanho();
   DesenharVista(false);
   DesenharFotos();
+  DesenharAvaliacoes();
 }
 
 //arranque -> le os dados e desenha a pagina;

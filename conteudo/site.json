@@ -118,5 +118,64 @@
       }
     ]
   },
-  "fotos": []
+  "fotos": [],
+  "avaliacoes": {
+    "titulo": {
+      "pt": "O que dizem de nós",
+      "en": "What people say about us"
+    },
+    "nota": 4.6,
+    "total": 1417,
+    "link": "https://search.google.com/local/reviews?placeid=ChIJS2deWpojPQ0R6yxF5Ipj3IE",
+    "lista": [
+      {
+        "nome": "",
+        "estrelas": 4,
+        "data": "2026-10-23",
+        "texto": "Por sorte, havia vários restaurantes fechados, o que nos levou aqui, ainda bem. A repetir sem dúvida."
+      },
+      {
+        "nome": "",
+        "estrelas": 5,
+        "data": "2026-10-15",
+        "texto": "Fui sozinha ao restaurante e tentaram me ajudar ao máximo encontrar uma mesa para mim porque o restaurante estava cheio, foram super educados e atenciosos. Além da comida ter sido excelente. O pão de alho deles é perfeito! Toda vez que voltar à Covilhã já sei onde parar."
+      },
+      {
+        "nome": "Pedro Mira",
+        "estrelas": 4,
+        "data": "2026-08-29",
+        "texto": "Sempre bom voltar a esta casa! É já a tradição da família em terminar as férias por esta terra a comer uma bela pizza! Daqui a um ano estou de volta!"
+      },
+      {
+        "nome": "filmacg4 Filipe",
+        "estrelas": 5,
+        "data": "2026-08-28",
+        "texto": "Chegamos sem reserva e nos pediram para voltar uma hora depois para que pudessem reservar uma mesa para nós. E cumpriram a promessa! A recepção foi fantástica, o garçom e a garçonete estavam sorridentes, a comida estava excelente e o lugar era muito limpo, com vista para a cozinha. Simplesmente perfeito!"
+      },
+      {
+        "nome": "Maria Meireles",
+        "estrelas": 5,
+        "data": "2026-07-29",
+        "texto": "Um dos melhores restaurantes que já frequentei e um dos meus favoritos. A comida é excecional, de uma qualidade imensa por um ótimo preço (as bebidas idem), o que proporciona uma ótima relação qualidade-preço. As massas destacam-se, com um sabor magnífico e um conforto ao paladar. O atendimento é igualmente excecional, de todas as vezes que frequentei este restaurante fui atendida com muita simpatia e os meus pedidos peculiares foram atendidos flexivelmente pelos empregados de mesa e cozinheiros. Recomendo muito este restaurante e continuarei a frequentar o mesmo enquanto residir nesta cidade."
+      },
+      {
+        "nome": "",
+        "estrelas": 5,
+        "data": "2025-12-29",
+        "texto": "Pedimos entrada de pão de alho e estava muito bom. Lasanha e pizza muito saborosa também. Atendimento rápido e prestável. Ótima relação qualidade/preço. Recomendo!!"
+      },
+      {
+        "nome": "Diogo Oliveira",
+        "estrelas": 4,
+        "data": "2025-10-29",
+        "texto": "Pizzas deliciosas, totalmente caseiras, com um tamanho bem generoso. A massa estava igualmente saborosa. De forma geral, é um restaurante com uma grande variedade de pizzas/massas, com um preço acessível e com uma qualidade de excelência. Recomendo vivamente este restaurante italiano e considero ser uma paragem obrigatória para quem está pela Covilhã."
+      },
+      {
+        "nome": "",
+        "estrelas": 3,
+        "data": "2025-10-28",
+        "texto": "O restaurante Mamma Mia é um restaurante com um ar caseiro e com muito bom aspecto no seio interior. É aconselhável fazer reserva antecipada. No geral as pizzas são boas mas em Aveiro há muito melhores. O tamanho é generoso. O pão de alho é muito saboroso."
+      }
+    ]
+  }
 }

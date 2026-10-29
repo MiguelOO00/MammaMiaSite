@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&family=Caveat:wght@700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="estilos.css?v=6">
+  <link rel="stylesheet" href="estilos.css?v=9">
 </head>
 <body>
 
@@ -71,7 +71,7 @@
     </defs>
   </svg>
 
-  <!-- NavBar -> esta sempre a vista para ligar ou ir ao menu; -->
+  <!-- barra de cima -> esta sempre a vista para ligar ou ir ao menu; -->
   <header class="barra">
     <a class="logo" href="#inicio">MAMMA MIA</a>
     <nav class="links" aria-label="Secções">
@@ -79,6 +79,7 @@
       <a class="so-pc" href="#pedir" data-t="comoPedir">Como pedir</a>
       <a class="so-pc" href="#horario" data-t="horario">Horário</a>
       <a class="so-pc" href="#onde" data-t="onde">Onde estamos</a>
+        <a class="so-pc" href="#avaliacoes" data-t="navAvaliacoes">Avaliações</a>
       <button class="lingua" id="lingua" type="button" aria-label="Mudar a língua">EN</button>
       <a class="botao tomate so-pc" data-ligar href="#" data-t="ligar">Ligar</a>
     </nav>
@@ -245,6 +246,20 @@
         </div>
       </div>
     </section>
+
+    <!-- avaliacoes -> as do Google a passar devagar, para quem nao conhece ver que é bom; -->
+    <section class="avaliacoes" id="avaliacoes">
+      <div class="wrap cabecalho">
+        <h2 data-texto="avaliacoes.titulo"></h2>
+        <p class="mao" id="avaliacoesNota"></p>
+      </div>
+      <div class="faixa">
+        <div class="faixa-trilho" id="faixa"></div>
+      </div>
+      <div class="wrap avaliacoes-fim">
+        <a class="botao linha" id="avaliacoesLink" href="#" target="_blank" rel="noopener" data-t="verTodas">Ver todas no Google</a>
+      </div>
+    </section>
   </main>
 
   <footer class="rodape">
@@ -271,7 +286,7 @@
   </dialog>
 
   <!-- o pizza.js vem primeiro -> o site.js usa as funcoes dele; -->
-  <script src="pizza.js?v=6"></script>
-  <script src="site.js?v=6"></script>
+  <script src="pizza.js?v=9"></script>
+  <script src="site.js?v=9"></script>
 </body>
 </html>
