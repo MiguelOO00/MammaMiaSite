@@ -6,20 +6,53 @@
 /* 1. BASE -> cores, letras, botoes, barras e rodape; */
 /* ================================================================== */
 
-/* cores -> as do Figma, mudo aqui e muda em todo o lado; */
+/* letras -> estão guardadas na pasta letras do próprio site, em vez de virem do Google Fonts; */
+/* assim cada visita não manda o IP da pessoa ao Google (RGPD) e o site abre mais depressa; */
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 200;
+  font-display: swap;
+  src: url("letras/montserrat-latin-200-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 300;
+  font-display: swap;
+  src: url("letras/montserrat-latin-300-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-display: swap;
+  src: url("letras/montserrat-latin-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 500;
+  font-display: swap;
+  src: url("letras/montserrat-latin-500-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Caveat";
+  font-weight: 700;
+  font-display: swap;
+  src: url("letras/caveat-latin-700-normal.woff2") format("woff2");
+}
+
+/* cores -> tema escuro "forno", mudo aqui e muda em todo o lado; */
 :root {
-  --farinha: #E8E2D7;
-  --papel: #F5F1EA;
-  --forno: #2B2724;
-  --tinta: #2B2724;
-  --cinza: #6E675E;
-  --claro: #F5F1EA;
-  --linha: #D3CABA;
-  --tomate: #B23A26;
-  --tomate-escuro: #8F2C1C;
-  --manjericao: #4F6B2F;
-  --massa: #D9B57A;
-  --torrada: #DDD4C4; /* bege mais escuro -> so para separar as avaliacoes do resto; */
+  --farinha: #1C1714; /* fundo da página -> castanho quase preto, a pizza e o vermelho saltam à vista; */
+  --papel: #25201C; /* um tom acima do fundo -> menu e cartões; */
+  --forno: #100C0A; /* o mais escuro -> parte do "Como pedir"; */
+  --tinta: #F2ECE3; /* texto principal -> claro porque o fundo é escuro; */
+  --cinza: #B3A898;
+  --claro: #F2ECE3;
+  --linha: #3A322C;
+  --tomate: #E2492F; /* vermelho mais vivo -> no escuro o antigo ficava apagado; */
+  --tomate-escuro: #C23A22;
+  --manjericao: #8DB05A;
+  --massa: #E3B66E;
+  --torrada: #14100E; /* um pouco mais escuro que o fundo -> só para separar as avaliações; */
   --letra: "Montserrat", system-ui, sans-serif;
   --mao: "Caveat", "Comic Sans MS", cursive;
 }
@@ -28,7 +61,11 @@
 * {
   box-sizing: border-box;
 }
+[hidden] {
+  display: none !important; /* sem isto o display: flex dos botões de tamanho ganhava ao hidden e eles apareciam na burrata; */
+}
 html {
+  color-scheme: dark; /* o browser pinta as barras de scroll e os campos em escuro; */
   scroll-behavior: smooth;
   scroll-padding-top: 76px; /* senao a barra de cima tapava o titulo quando se carrega num link; */
   overflow-x: clip; /* clip e nao hidden -> o hidden estragava o sticky; */
@@ -131,11 +168,11 @@ ul {
 }
 .botao.linha:hover {
   background: var(--tinta);
-  color: var(--claro);
+  color: var(--farinha); /* fundo claro -> o texto passa a escuro para se ler; */
 }
 .botao.claro {
   background: var(--claro);
-  color: var(--tinta);
+  color: var(--forno);
 }
 
 /* barra de cima -> meio transparente e desfocada; */
@@ -214,12 +251,15 @@ ul {
 
 /* rodape; */
 .rodape {
+  position: relative;
+  overflow: hidden; /* a neve do rodapé não sai para fora dele; */
   border-top: 1px solid var(--linha);
   padding: 2rem 0;
   color: var(--cinza);
   font-size: .85rem;
 }
 .rodape-linha {
+  position: relative; /* o texto fica por cima da neve; */
   display: grid;
   gap: .8rem;
 }
@@ -286,14 +326,14 @@ ul {
 }
 .inicio .wrap {
   position: relative;
-  z-index: 1; /* texto e pizza por cima da farinha; */
+  z-index: 1; /* texto e pizza por cima da neve; */
 }
-.farinha {
+.neve {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none; /* a farinha nao apanha os cliques dos botoes; */
+  pointer-events: none; /* a neve não apanha os cliques dos botões; */
 }
 .inicio-grelha {
   display: grid;
@@ -598,7 +638,7 @@ ul {
   gap: .6rem;
   height: 48px;
   padding: 0 1rem;
-  background: var(--claro);
+  background: var(--papel); /* com fundo claro o texto escrito (claro) não se via; */
   border: 1.5px solid var(--linha);
   border-radius: 999px;
 }
@@ -648,7 +688,7 @@ ul {
 .filtro[aria-pressed="true"] {
   background: var(--tinta);
   border-color: var(--tinta);
-  color: var(--claro);
+  color: var(--farinha);
 }
 
 /* separadores das categorias; */
@@ -896,7 +936,7 @@ ul {
 .tamanhos-botoes button[aria-checked="true"] {
   background: var(--tinta);
   border-color: var(--tinta);
-  color: var(--claro);
+  color: var(--farinha);
 }
 .vista-preco {
   font-weight: 500;
@@ -1134,7 +1174,7 @@ ul {
   border: 0;
   border-radius: 50%;
   background: var(--claro);
-  color: var(--tinta);
+  color: var(--forno);
   font-size: 1rem;
   cursor: pointer;
 }
@@ -1172,7 +1212,7 @@ ul {
 .semana li.aberto {
   background: var(--tinta);
   border-color: var(--tinta);
-  color: var(--claro);
+  color: var(--farinha);
 }
 .semana li.hoje {
   outline: 2px solid var(--tomate); /* o dia de hoje fica com contorno vermelho; */
@@ -1222,11 +1262,11 @@ ul {
   height: 100%;
   border: 0;
   pointer-events: none; /* o mapa nao se arrasta -> senao no telemovel o dedo ficava preso no mapa; */
-  filter: grayscale(1) sepia(.3) contrast(.9) brightness(1.04); /* cor de papel como o resto do site; */
+  filter: invert(.92) hue-rotate(180deg) grayscale(.6) sepia(.35) contrast(.9); /* mapa escuro -> o invert põe-no escuro e o hue-rotate devolve as cores certas à água e ao verde; */
   transition: filter .6s ease;
 }
 .mapa-link:hover iframe {
-  filter: grayscale(.15) sepia(.1) contrast(.95); /* com o rato em cima ganha cor -> para se perceber que da para carregar; */
+  filter: invert(.92) hue-rotate(180deg) grayscale(.1) contrast(.95); /* com o rato em cima ganha cor -> para se perceber que dá para carregar; */
 }
 .mapa-esbatido {
   position: absolute;
@@ -1350,9 +1390,27 @@ ul {
   background: var(--torrada); /* fundo mais escuro -> a faixa destaca-se e os cartoes claros saltam a vista; */
 }
 .faixa {
+  position: relative;
   overflow: hidden;
-  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); /* os cartoes aparecem e desaparecem esbatidos nas pontas; */
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+/* esbatido nas pontas -> com mask-image o Safari do iPhone deixava de desenhar os cartões, por isso são duas camadas por cima; */
+.faixa::before,
+.faixa::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 6%;
+  z-index: 1;
+  pointer-events: none; /* as camadas não apanham os cliques nos cartões; */
+}
+.faixa::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--torrada), transparent);
+}
+.faixa::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--torrada), transparent);
 }
 .faixa-trilho,
 .faixa-copia {
@@ -1411,6 +1469,7 @@ ul {
 @media (prefers-reduced-motion: no-preference) {
   .faixa-trilho {
     animation: rodar var(--tempo, 70s) linear infinite;
+    will-change: transform; /* o browser prepara a animação à parte -> anda sem saltos no telemóvel; */
   }
   .faixa:hover .faixa-trilho {
     animation-play-state: paused; /* com o rato em cima para -> da para ler com calma; */

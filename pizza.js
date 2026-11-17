@@ -1,3 +1,20 @@
+//pizza.js -> desenha as pizzas em SVG a partir dos ingredientes do menu;
+//
+//COMO SE USA -> só é preciso uma função: PizzaSVG(nome, ingredientes, centroX, centroY, foto);
+//  const pizza = PizzaSVG("Margherita", "Molho de tomate, mozzarella, orégãos", 260, 260);
+//  pizza.base         -> a tábua, a massa, o molho e o queijo (texto SVG);
+//  pizza.ingredientes -> as peças por cima, que caem na animação (texto SVG);
+//o resto deste ficheiro são as peças do desenho -> para mudar o site não é preciso mexer aqui;
+//para pôr um ingrediente novo, junta-o à lista Ingredientes (parte 3) com a palavra que aparece no menu;
+//os gradientes e filtros (#pMassa, #pGrao...) estao no inicio do index.html;
+//
+//como esta dividido:
+//  1. FERRAMENTAS     -> numeros aleatorios, formas tortas e manchas;
+//  2. BASE DA PIZZA   -> tabua, massa, molho, queijo, cortes, calzone e foto;
+//  2b. OUTROS PRATOS  -> burrata inteira e ovos cozidos, que não são pizza;
+//  3. INGREDIENTES    -> um desenho para cada ingrediente;
+//  4. ESPALHAR        -> mete os ingredientes na pizza sem ficarem uns em cima dos outros;
+
 //======================================================================;
 //1. FERRAMENTAS e 2. BASE DA PIZZA;
 //======================================================================;
@@ -192,11 +209,158 @@ function MolhoDe(texto) {
 //devolve a base e os ingredientes separados -> a animacao so mexe nos ingredientes;
 function PizzaSVG(nome, texto, cx, cy, foto) {
   if (foto) return { base: DesenharFoto(cx, cy, foto), ingredientes: "" };
+  if (/^burrata \(/i.test(nome)) return DesenharPratoBurrata(cx, cy, nome); //"Burrata (unidade)" dos extras vem sozinha -> a pizza Burrata não tem o parêntese, por isso continua pizza;
+  if (/^ovo cozido/i.test(nome)) return DesenharPratoOvos(cx, cy, nome); //o ovo dos extras também vem sozinho;
   if (/calzone fechada/i.test(nome)) return { base: DesenharCalzone(cx, cy, nome), ingredientes: "" };
   return {
     base: DesenharBase(cx, cy, MolhoDe(texto), nome),
     ingredientes: DesenharIngredientes(nome, texto, cx, cy)
   };
+}
+
+//======================================================================;
+//2b. OUTROS PRATOS -> a burrata e os ovos dos extras vêm sozinhos, por isso aparecem em cima da tábua sem pizza;
+//======================================================================;
+
+//pimenta e flor de sal por cima -> pontinhos pretos e brancos tortos, como quando se tempera à mão;
+function Tempero(r, quantos, raio) {
+  let s = "";
+  for (let i = 0; i < quantos; i++) {
+    const a = Entre(r, 0, Math.PI * 2);
+    const d = Math.sqrt(r()) * raio; //com a raiz espalham por igual;
+    const x = (Math.cos(a) * d).toFixed(1);
+    const y = (Math.sin(a) * d).toFixed(1);
+    if (r() < .6) s += `<circle cx="${x}" cy="${y}" r="${Entre(r, .7, 1.6).toFixed(1)}" fill="#2A211B" opacity=".75"/>`;
+    else s += `<rect x="${x}" y="${y}" width="${Entre(r, 1.5, 3).toFixed(1)}" height="${Entre(r, 1.2, 2.4).toFixed(1)}" fill="#FFF" opacity=".9" transform="rotate(${Entre(r, 0, 90).toFixed(0)} ${x} ${y})"/>`;
+  }
+  return s;
+}
+
+//burrata vista de cima -> bola branca e macia com o nó ao meio, aberta de lado com o recheio (stracciatella) a sair;
+function DesenharBolaBurrata(r) {
+  const rasgo = .75; //ângulo do lado aberto, em radianos -> fica em baixo à direita;
+  const rx = Math.cos(rasgo), ry = Math.sin(rasgo);
+  const graus = (rasgo * 57.3).toFixed(0);
+
+  //fiozinhos de recheio -> a stracciatella é queijo desfiado em natas, por isso tem fios por cima;
+  let fios = "";
+  for (let i = 0; i < 22; i++) {
+    const d = Entre(r, 70, 150);
+    const x = rx * d + Entre(r, -26, 26);
+    const y = ry * d + Entre(r, -26, 26);
+    const cor = r() < .5 ? "#FFFFFF" : "#E3D4B6";
+    fios += `<path d="M${x.toFixed(1)} ${y.toFixed(1)} q${Entre(r, -7, 7).toFixed(1)} ${Entre(r, -5, 5).toFixed(1)} ${Entre(r, -12, 12).toFixed(1)} ${Entre(r, -3, 9).toFixed(1)}" stroke="${cor}" stroke-width="${Entre(r, 1.2, 2.4).toFixed(1)}" stroke-linecap="round" fill="none" opacity=".85"/>`;
+  }
+
+  //recheio a escorrer pela tábua -> forma redonda e lisa porque é cremoso, com sombra por baixo e brilho por cima;
+  const poca = rx * 128, pocaY = ry * 128;
+  const recheio = `
+    <path d="${Bolha(poca + 4, pocaY + 6, 56, .14, r)}" fill="#2B160A" opacity=".35" filter="url(#pDesfoque)"/>
+    <path d="${Bolha(poca, pocaY, 54, .14, r)}" fill="url(#pRecheio)"/>
+    <path d="M${(rx * 60 - ry * 34).toFixed(1)} ${(ry * 60 + rx * 34).toFixed(1)} Q${(rx * 100).toFixed(1)} ${(ry * 100).toFixed(1)} ${(poca - ry * 46).toFixed(1)} ${(pocaY + rx * 46).toFixed(1)} L${(poca + ry * 46).toFixed(1)} ${(pocaY - rx * 46).toFixed(1)} Q${(rx * 100).toFixed(1)} ${(ry * 100).toFixed(1)} ${(rx * 60 + ry * 34).toFixed(1)} ${(ry * 60 - rx * 34).toFixed(1)} Z" fill="#F6EEDD"/>
+    ${fios}
+    <ellipse cx="${(poca - 14).toFixed(1)}" cy="${(pocaY - 16).toFixed(1)}" rx="16" ry="7" fill="#FFF" opacity=".7" transform="rotate(-25 ${(poca - 14).toFixed(1)} ${(pocaY - 16).toFixed(1)})" filter="url(#pDesfoqueLeve)"/>`;
+
+  //pregas do nó -> a burrata fecha-se como um saquinho, por isso as pregas saem do meio, suaves e desfocadas;
+  let pregas = "";
+  for (let i = 0; i < 7; i++) {
+    const a = i / 7 * Math.PI * 2 + Entre(r, -.25, .25);
+    const l = Entre(r, 24, 40);
+    const curva = Entre(r, 4, 9);
+    const x2 = Math.cos(a) * l, y2 = Math.sin(a) * l;
+    const meioX = (x2 / 2 - Math.sin(a) * curva).toFixed(1), meioY = (y2 / 2 + Math.cos(a) * curva).toFixed(1);
+    pregas += `<path d="M${(Math.cos(a) * 10).toFixed(1)} ${(Math.sin(a) * 10).toFixed(1)} Q${meioX} ${meioY} ${x2.toFixed(1)} ${y2.toFixed(1)}" stroke="#BFAE8A" stroke-width="5" stroke-linecap="round" fill="none" opacity=".22"/>`;
+    pregas += `<path d="M${(Math.cos(a + .25) * 10).toFixed(1)} ${(Math.sin(a + .25) * 10).toFixed(1)} Q${meioX} ${meioY} ${(Math.cos(a + .2) * l * .85).toFixed(1)} ${(Math.sin(a + .2) * l * .85).toFixed(1)}" stroke="#FFF" stroke-width="3" stroke-linecap="round" fill="none" opacity=".45"/>`;
+  }
+
+  //azeite -> fio fino a escorrer por cima; amarelo transparente com brilho para parecer líquido;
+  const azeite = `
+    <path d="M-62 -40 C -30 -66, 22 -64, 44 -30 C 56 -10, 52 14, 40 30" stroke="#C9A632" stroke-width="3.5" stroke-linecap="round" fill="none" opacity=".5"/>
+    <path d="M-58 -42 C -30 -63, 18 -61, 40 -32" stroke="#FFF3B5" stroke-width="1.2" stroke-linecap="round" fill="none" opacity=".7"/>`;
+
+  return `
+    <ellipse cx="10" cy="16" rx="110" ry="104" fill="#2B160A" opacity=".5" filter="url(#pDesfoque)"/>
+    ${recheio}
+    <path d="${Bolha(0, 0, 104, .02, r)}" fill="url(#pBolaBurrata)"/>
+    <circle cx="0" cy="0" r="104" fill="none" stroke="#B29E78" stroke-width="22" opacity=".18" filter="url(#pDesfoque)" transform="translate(8 9)"/>
+    <ellipse cx="${(rx * 80).toFixed(1)}" cy="${(ry * 80).toFixed(1)}" rx="38" ry="24" transform="rotate(${graus} ${(rx * 80).toFixed(1)} ${(ry * 80).toFixed(1)})" fill="#F6EEDD"/>
+    <path d="M${(rx * 80 - ry * 40).toFixed(1)} ${(ry * 80 + rx * 40).toFixed(1)} q${(rx * -14).toFixed(1)} ${(ry * -14).toFixed(1)} ${(ry * 20 - rx * 10).toFixed(1)} ${(-rx * 20 - ry * 10).toFixed(1)} t${(ry * 22).toFixed(1)} ${(-rx * 22).toFixed(1)} t${(ry * 22 + rx * 6).toFixed(1)} ${(-rx * 22 + ry * 6).toFixed(1)}" stroke="#C3AE86" stroke-width="2.5" stroke-linecap="round" fill="none" opacity=".8"/>
+    <g filter="url(#pDesfoqueLeve)">${pregas}</g>
+    <ellipse cx="0" cy="0" rx="14" ry="11" fill="#EAE0CB"/>
+    <ellipse cx="-3" cy="-4" rx="7" ry="4" fill="#FFF" opacity=".8"/>
+    <ellipse cx="-42" cy="-46" rx="34" ry="17" fill="#FFF" opacity=".75" transform="rotate(-38 -42 -46)" filter="url(#pDesfoqueLeve)"/>
+    ${azeite}
+    ${Tempero(r, 34, 100)}`;
+}
+
+//tábua com a burrata, umas folhas de manjericão e tomate cherry ao lado -> como se serve na pizzaria;
+function DesenharPratoBurrata(cx, cy, nome) {
+  const r = Aleatorio(nome);
+  const ingredientes = [
+    Peca(cx - 10, cy + 4, 0, 0, DesenharBolaBurrata(r)),
+    Peca(cx + 150, cy - 105, -20, 3, DesenharManjericao(r)),
+    Peca(cx + 172, cy - 70, 35, 4, DesenharManjericao(r)),
+    Peca(cx - 160, cy + 120, 10, 5, DesenharManjericao(r)),
+    Peca(cx - 175, cy - 60, 0, 6, DesenharTomate()),
+    Peca(cx - 150, cy - 95, 40, 7, DesenharTomate()),
+    Peca(cx + 120, cy + 165, 15, 8, DesenharTomate())
+  ];
+  return { base: Tabua(cx, cy), ingredientes: ingredientes.join("") };
+}
+
+//forma de ovo -> uma ponta mais larga que a outra; o k é o quanto uma ponta é mais estreita;
+function FormaOvo(a, b, k) {
+  let d = "";
+  for (let i = 0; i <= 40; i++) {
+    const t = i / 40 * Math.PI * 2;
+    const x = a * Math.cos(t);
+    const y = b * Math.sin(t) * (1 + k * Math.cos(t)); //o cos faz a parte de cima e de baixo encolher só de um lado;
+    d += (i ? " L" : "M") + x.toFixed(1) + " " + y.toFixed(1);
+  }
+  return d + "Z";
+}
+
+//ovo cozido inteiro, já descascado -> clara branca e brilhante;
+function DesenharOvoInteiro() {
+  return `<path d="${FormaOvo(84, 62, -.12)}" transform="translate(6 10)" fill="#2B160A" opacity=".4" filter="url(#pDesfoque)"/>
+    <path d="${FormaOvo(84, 62, -.12)}" fill="url(#pClara)"/>
+    <ellipse cx="-25" cy="-22" rx="28" ry="12" fill="#FFF" opacity=".8" transform="rotate(-12 -25 -22)" filter="url(#pDesfoqueLeve)"/>`;
+}
+
+//metade de um ovo cozido -> clara cortada e a gema mais clara e esfarelada, como fica quando coze 10 minutos;
+function DesenharMeioOvo(r) {
+  let migalhas = "";
+  for (let i = 0; i < 8; i++) {
+    migalhas += `<circle cx="${Entre(r, -25, 25).toFixed(1)}" cy="${Entre(r, -22, 22).toFixed(1)}" r="${Entre(r, 1, 2.4).toFixed(1)}" fill="#E8B347" opacity=".7"/>`;
+  }
+  return `<path d="${FormaOvo(84, 62, -.12)}" transform="translate(5 8)" fill="#2B160A" opacity=".4" filter="url(#pDesfoque)"/>
+    <path d="${FormaOvo(84, 62, -.12)}" fill="#E9E1D2"/>
+    <path d="${FormaOvo(79, 57, -.12)}" fill="url(#pCorte)"/>
+    <g transform="translate(-9 0)">
+      <path d="${Bolha(0, 0, 35, .07, r)}" fill="url(#pGemaCozida)"/>
+      ${migalhas}
+      <ellipse cx="-10" cy="-11" rx="10" ry="5" fill="#FFF" opacity=".3"/>
+    </g>
+    ${Tempero(r, 14, 30)}`;
+}
+
+//cebolinho picado -> pedacinhos verdes por cima dos ovos, dá cor sem esconder a gema;
+function DesenharCebolinho(r) {
+  return `<rect x="-4" y="-1.6" width="${Entre(r, 6, 9).toFixed(1)}" height="3.2" rx="1.6" fill="url(#pFolha)"/>`;
+}
+
+//tábua com um ovo inteiro e outro aberto ao meio -> vê-se logo que é ovo cozido;
+function DesenharPratoOvos(cx, cy, nome) {
+  const r = Aleatorio(nome);
+  const ingredientes = [
+    Peca(cx - 85, cy + 75, -28, 0, DesenharOvoInteiro()),
+    Peca(cx + 70, cy - 85, 18, 1, DesenharMeioOvo(r)),
+    Peca(cx + 90, cy + 75, -12, 2, DesenharMeioOvo(r))
+  ];
+  for (let i = 0; i < 12; i++) {
+    ingredientes.push(Peca(cx + Entre(r, -10, 170), cy + Entre(r, -160, 160), Entre(r, 0, 180).toFixed(0), 3 + i % 4, DesenharCebolinho(r)));
+  }
+  return { base: Tabua(cx, cy), ingredientes: ingredientes.join("") };
 }
 
 //======================================================================;

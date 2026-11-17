@@ -5,14 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mamma Mia | Pizzaria na Covilhã</title>
   <meta name="description" content="Pizzas, massas e saladas no centro da Covilhã. Comer no local, take away e entrega.">
-  <meta name="theme-color" content="#E8E2D7">
+  <meta name="theme-color" content="#1C1714">
 
-  <!-- letras -> Montserrat é a do menu deles e a Caveat é para as notas a mao; -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&family=Caveat:wght@700&display=swap" rel="stylesheet">
+  <!-- segurança -> o browser só corre código deste site; se alguém conseguir meter um script de fora, é bloqueado; -->
+  <!-- o mapa do Google é a única coisa de fora que pode entrar (frame-src); -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <!-- segurança -> quando se carrega num link para outro site, esse site não fica a saber de que página vinha a pessoa; -->
+  <meta name="referrer" content="strict-origin-when-cross-origin">
 
-  <link rel="stylesheet" href="estilos.css?v=9">
+  <link rel="stylesheet" href="estilos.css?v=19">
 </head>
 <body>
 
@@ -42,6 +43,12 @@
       <linearGradient id="pPimVerde" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6DAA45"/><stop offset="1" stop-color="#2E6A22"/></linearGradient>
       <linearGradient id="pPimVermelho" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EE6448"/><stop offset="1" stop-color="#B02A17"/></linearGradient>
       <radialGradient id="pBurrata" cx=".4" cy=".35"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".75" stop-color="#F6F1E6"/><stop offset="1" stop-color="#E4DACA"/></radialGradient>
+      <!-- burrata inteira e ovos cozidos -> pratos que não são pizza; -->
+      <radialGradient id="pBolaBurrata" cx=".4" cy=".36" r=".7"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".5" stop-color="#F8F3E8"/><stop offset=".85" stop-color="#E6DBC4"/><stop offset="1" stop-color="#CDBB98"/></radialGradient>
+      <radialGradient id="pRecheio" cx=".5" cy=".5"><stop offset="0" stop-color="#FFFDF7"/><stop offset="1" stop-color="#F1E6CF"/></radialGradient>
+      <radialGradient id="pClara" cx=".38" cy=".32" r=".75"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".6" stop-color="#F7F3EB"/><stop offset="1" stop-color="#D9CFBF"/></radialGradient>
+      <radialGradient id="pCorte" cx=".5" cy=".5"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".8" stop-color="#FBF8F2"/><stop offset="1" stop-color="#E6DED0"/></radialGradient>
+      <radialGradient id="pGemaCozida" cx=".45" cy=".42"><stop offset="0" stop-color="#FCDD7E"/><stop offset=".75" stop-color="#F3C454"/><stop offset="1" stop-color="#E2AA3C"/></radialGradient>
       <radialGradient id="pBrilho"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".55"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
 
       <!-- madeira -> ruido esticado para os lados parece as linhas da tabua; -->
@@ -88,7 +95,7 @@
   <main>
     <!-- inicio; -->
     <section class="inicio" id="inicio">
-      <canvas class="farinha" id="farinha" aria-hidden="true"></canvas>
+      <canvas class="neve" id="neveInicio" aria-hidden="true"></canvas>
       <div class="wrap inicio-grelha">
         <div class="inicio-texto">
           <p class="estado" id="estado"><span class="ponto"></span><span class="estado-texto">…</span></p>
@@ -121,7 +128,7 @@
       </div>
     </section>
 
-    <!-- sugestoes -> as pizzas escolhem-se no site.json; -->
+    <!-- sugestões -> as pizzas escolhem-se no restaurante.json; -->
     <section class="sugestoes">
       <div class="wrap">
         <div class="cabecalho">
@@ -196,7 +203,7 @@
       </div>
     </section>
 
-    <!-- fotos -> so aparece se houver fotos no site.json; -->
+    <!-- fotos -> só aparece se houver fotos no restaurante.json; -->
     <section class="fotos" id="fotos" hidden>
       <div class="wrap">
         <h2 data-t="aCasa">A nossa casa</h2>
@@ -218,12 +225,12 @@
           <ul class="contactos">
             <li><a data-ligar href="#"><span data-t="telefone">Telefone</span> <span data-fixo></span></a></li>
             <li><a data-ligar-movel href="#"><span data-t="telemovelM">Telemóvel</span> <span data-movel></span></a></li>
-            <li><a data-instagram href="#" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a data-instagram href="#" target="_blank" rel="noopener noreferrer">Instagram</a></li>
           </ul>
         </div>
         <!-- mapa -> nao se arrasta, carregar abre o Google Maps; -->
         <div class="mapa">
-          <a class="mapa-link" data-mapa-link href="#" target="_blank" rel="noopener" data-t-aria="abrirMapa">
+          <a class="mapa-link" data-mapa-link href="#" target="_blank" rel="noopener noreferrer" data-t-aria="abrirMapa">
             <iframe id="mapa" title="Mapa" loading="lazy" referrerpolicy="no-referrer-when-downgrade" tabindex="-1"></iframe>
             <span class="mapa-esbatido"></span>
             <span class="mapa-pino" aria-hidden="true">
@@ -239,7 +246,7 @@
             <p class="cinza" id="mapaMorada"></p>
             <p class="estado" id="mapaEstado"><span class="ponto"></span><span class="estado-texto">…</span></p>
             <div class="mapa-botoes">
-              <a class="botao tomate" data-direcoes href="#" target="_blank" rel="noopener" data-t="comoChegar">Como chegar</a>
+              <a class="botao tomate" data-direcoes href="#" target="_blank" rel="noopener noreferrer" data-t="comoChegar">Como chegar</a>
               <a class="botao linha" data-ligar href="#" data-t="ligar">Ligar</a>
             </div>
           </div>
@@ -257,17 +264,18 @@
         <div class="faixa-trilho" id="faixa"></div>
       </div>
       <div class="wrap avaliacoes-fim">
-        <a class="botao linha" id="avaliacoesLink" href="#" target="_blank" rel="noopener" data-t="verTodas">Ver todas no Google</a>
+        <a class="botao linha" id="avaliacoesLink" href="#" target="_blank" rel="noopener noreferrer" data-t="verTodas">Ver todas no Google</a>
       </div>
     </section>
   </main>
 
   <footer class="rodape">
+    <canvas class="neve" id="neveRodape" aria-hidden="true"></canvas>
     <div class="wrap rodape-linha">
       <span class="logo">MAMMA MIA</span>
       <nav class="rodape-links">
-        <a data-instagram href="#" target="_blank" rel="noopener">Instagram</a>
-        <a id="linkFacebook" href="#" target="_blank" rel="noopener">Facebook</a>
+        <a data-instagram href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a id="linkFacebook" href="#" target="_blank" rel="noopener noreferrer">Facebook</a>
       </nav>
       <span data-t="wifi">Wi-Fi disponível</span>
     </div>
@@ -276,7 +284,7 @@
   <!-- barra de baixo -> so no telemovel, para ter os botoes perto do dedo; -->
   <div class="barra-baixo">
     <a class="botao tomate" data-ligar href="#" data-t="ligar">Ligar</a>
-    <a class="botao linha" data-direcoes href="#" target="_blank" rel="noopener" data-t="comoChegar">Como chegar</a>
+    <a class="botao linha" data-direcoes href="#" target="_blank" rel="noopener noreferrer" data-t="comoChegar">Como chegar</a>
   </div>
 
   <!-- foto em grande; -->
@@ -286,7 +294,7 @@
   </dialog>
 
   <!-- o pizza.js vem primeiro -> o site.js usa as funcoes dele; -->
-  <script src="pizza.js?v=9"></script>
-  <script src="site.js?v=9"></script>
+  <script src="pizza.js?v=19"></script>
+  <script src="site.js?v=19"></script>
 </body>
 </html>
