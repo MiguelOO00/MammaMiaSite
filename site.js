@@ -981,7 +981,7 @@ async function Arrancar() {
   LigarEventos();
   DesenharTudo();
   document.body.classList.remove("a-carregar"); //já está tudo desenhado -> a página aparece de uma vez, sem os textos a saltar;
-  setTimeout(IniciarNeve, 2500); //a neve só começa depois de a pizza do início acabar de cair -> assim o browser não faz as duas animações pesadas ao mesmo tempo;
+  setTimeout(IniciarNeve, 800); //a neve começa pouco depois da página -> assim não arranca ao mesmo tempo que os primeiros ingredientes a cair;
   setInterval(MostrarEstado, 30000); //vê o horário de 30 em 30 segundos -> assim os minutos vão descendo sozinhos;
 }
 
