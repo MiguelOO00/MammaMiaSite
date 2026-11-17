@@ -174,7 +174,7 @@ ul {
   font-weight: 500;
   font-size: 1rem;
   line-height: 1.2;
-  transition: background .2s, color .2s;
+  transition: background .3s ease, color .3s ease, border-color .3s ease; /* a cor muda devagar -> o hover fica suave; */
 }
 .botao.tomate {
   background: var(--tomate);
@@ -194,6 +194,9 @@ ul {
 .botao.claro {
   background: var(--claro);
   color: var(--forno);
+}
+.botao.claro:hover {
+  background: var(--massa); /* o bege passa a dourado -> mostra que é para carregar; */
 }
 
 /* barra de cima -> meio transparente e desfocada; */
@@ -216,6 +219,10 @@ ul {
   letter-spacing: .45em;
   font-size: 1rem;
   color: var(--tinta);
+  transition: opacity .3s ease;
+}
+.logo:hover {
+  opacity: .55; /* a cor fica igual, só escurece um pouco; */
 }
 .links {
   display: flex;
@@ -225,6 +232,7 @@ ul {
 .links a {
   color: var(--tinta);
   font-size: .95rem;
+  transition: color .3s ease; /* antes mudava de repente -> assim passa para o vermelho devagar; */
 }
 .links a:hover {
   color: var(--tomate);
@@ -247,6 +255,7 @@ ul {
   color: var(--tinta);
   border-radius: 999px;
   padding: .3rem .7rem;
+  transition: border-color .3s ease;
 }
 .lingua:hover {
   border-color: var(--tinta);
@@ -291,6 +300,10 @@ ul {
 }
 .rodape-links a {
   color: var(--cinza);
+  transition: color .3s ease;
+}
+.rodape-links a:hover {
+  color: var(--tinta); /* o cinzento passa a claro, como os links da barra de cima; */
 }
 
 /* tablet; */
@@ -692,9 +705,9 @@ ul {
 .filtros {
   display: flex;
   gap: .5rem;
-  overflow-x: auto; /* no telemovel os filtros deslizam para o lado; */
-  margin: 0 -16px;
-  padding: 0 16px;
+  overflow-x: auto; /* no telemóvel os filtros deslizam para o lado; */
+  margin: -6px -16px; /* os 6px de cima e de baixo -> o contorno do teclado deixa de ficar cortado; */
+  padding: 6px 16px;
   scrollbar-width: none;
 }
 .filtros::-webkit-scrollbar {
@@ -710,6 +723,11 @@ ul {
   color: var(--cinza);
   border-radius: 999px;
   padding: .45rem .95rem;
+  transition: background .3s ease, color .3s ease, border-color .3s ease;
+}
+.filtro:hover {
+  border-color: var(--cinza);
+  color: var(--tinta);
 }
 .filtro[aria-pressed="true"] {
   background: var(--tinta);
@@ -741,6 +759,11 @@ ul {
   padding: .7rem 0;
   white-space: nowrap;
   cursor: pointer;
+  transition: color .3s ease, border-color .3s ease;
+}
+.separadores button:hover {
+  color: var(--tinta);
+  border-bottom-color: var(--cinza); /* risco cinzento no hover -> o vermelho fica só para o separador aberto; */
 }
 .separadores button[aria-selected="true"] {
   color: var(--tinta);
@@ -1456,6 +1479,7 @@ ul {
 }
 .avaliacao {
   flex: 0 0 280px;
+  -webkit-touch-callout: none; /* no iPhone, com o dedo parado no cartão, não abre o menu do link; */
   display: flex;
   flex-direction: column;
   gap: .7rem;
@@ -1502,11 +1526,12 @@ ul {
 /* so roda para quem nao tem menos movimento ligado -> os outros fazem scroll com o dedo; */
 @media (prefers-reduced-motion: no-preference) {
   .faixa-trilho {
-    animation: rodar var(--tempo, 70s) linear infinite;
+    animation: rodar calc(var(--cartoes, 10) * 14s) linear infinite; /* 14 segundos por cartão -> no telemóvel só se vê um de cada vez, por isso vai devagar; */
     will-change: transform; /* o browser prepara a animação à parte -> anda sem saltos no telemóvel; */
   }
-  .faixa:hover .faixa-trilho {
-    animation-play-state: paused; /* com o rato em cima para -> da para ler com calma; */
+  .faixa:hover .faixa-trilho,
+  .faixa-trilho.parada {
+    animation-play-state: paused; /* com o rato em cima ou o dedo na faixa para -> dá para ler com calma; */
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -1527,5 +1552,8 @@ ul {
 @media (min-width: 1100px) {
   .avaliacao {
     flex-basis: 360px;
+  }
+  .faixa-trilho {
+    animation-duration: calc(var(--cartoes, 10) * 7s); /* no computador vêem-se vários cartões ao mesmo tempo -> pode andar ao dobro; */
   }
 }
