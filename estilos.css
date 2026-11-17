@@ -752,14 +752,14 @@ ul {
   font-size: 1.4rem;
 }
 
-/* o --col é a largura das colunas dos precos -> igual no cabecalho e nos pratos para ficarem alinhados; */
+/* o --col é a largura das colunas dos preços -> igual no cabeçalho e nos pratos para ficarem alinhados; */
 .lista {
   --col: 62px;
 }
 .tamanhos,
 .prato-topo.tres {
   display: grid;
-  grid-template-columns: 1fr repeat(3, var(--col));
+  grid-template-columns: minmax(0, 1fr) repeat(3, var(--col)); /* minmax(0, ...) -> um nome comprido encolhe e não empurra os preços para fora; */
   gap: .6rem;
   align-items: end;
 }
@@ -836,12 +836,12 @@ ul {
   font-weight: 500;
 }
 .prato-nome .mao {
+  display: block; /* no telemóvel a nota vai para a linha de baixo -> ao lado do nome não cabia e escondia os preços; */
   font-size: 1.25rem;
-  margin-left: .35rem;
   white-space: nowrap;
 }
 .pontos {
-  flex: 1; /* pontinhos entre o nome e o preco, como no menu de papel; */
+  flex: 1; /* pontinhos entre o nome e o preço, como no menu de papel; */
   min-width: 1rem;
   border-bottom: 2px dotted color-mix(in srgb, var(--cinza) 45%, transparent);
   transform: translateY(-5px);
@@ -1060,6 +1060,10 @@ ul {
   .prato-nome,
   .preco {
     font-size: 1.05rem;
+  }
+  .prato-nome .mao {
+    display: inline; /* no computador há espaço -> a nota volta para o lado do nome; */
+    margin-left: .35rem;
   }
   .ingredientes {
     font-size: .95rem;
