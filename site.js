@@ -486,6 +486,7 @@ function Neve(tela, zona) {
   Medir();
   window.addEventListener("resize", Medir);
   requestAnimationFrame(Passo);
+  tela.classList.add("ligada"); //a neve aparece devagar (o css faz a transição);
 }
 
 //======================================================================;
@@ -960,6 +961,7 @@ async function Arrancar() {
   try {
     await CarregarDados();
   } catch (erro) {
+    document.body.classList.remove("a-carregar"); //mesmo com erro a página tem de aparecer, para se ler o aviso;
     Id("lista").textContent = "Não foi possível carregar o menu. Abra o site com o Live Server (Go Live).";
     return;
   }
@@ -968,7 +970,8 @@ async function Arrancar() {
   if (!PratoAtual) PratoAtual = Menu.categorias[0].itens[0];
   LigarEventos();
   DesenharTudo();
-  IniciarNeve();
+  document.body.classList.remove("a-carregar"); //já está tudo desenhado -> a página aparece de uma vez, sem os textos a saltar;
+  setTimeout(IniciarNeve, 2500); //a neve só começa depois de a pizza do início acabar de cair -> assim o browser não faz as duas animações pesadas ao mesmo tempo;
   setInterval(MostrarEstado, 30000); //vê o horário de 30 em 30 segundos -> assim os minutos vão descendo sozinhos;
 }
 

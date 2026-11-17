@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mamma Mia | Pizzaria na Covilhã</title>
-  <meta name="description" content="Pizzas, massas e saladas no centro da Covilhã. Comer no local, take away e entrega.">
+  <meta name="description" content="Pizzas, massas e saladas no centro da Covilhã. Comer no local, para levar e entrega ao domicílio.">
   <meta name="theme-color" content="#1C1714">
 
   <!-- segurança -> o browser só corre código deste site; se alguém conseguir meter um script de fora, é bloqueado; -->
@@ -13,9 +13,9 @@
   <!-- segurança -> quando se carrega num link para outro site, esse site não fica a saber de que página vinha a pessoa; -->
   <meta name="referrer" content="strict-origin-when-cross-origin">
 
-  <link rel="stylesheet" href="estilos.css?v=19">
+  <link rel="stylesheet" href="estilos.css?v=21">
 </head>
-<body>
+<body class="a-carregar">
 
   <!-- cores e filtros das pizzas -> estao aqui uma vez e todas as pizzas usam; -->
   <svg class="defs-pizza" width="0" height="0" aria-hidden="true" focusable="false">
@@ -107,7 +107,7 @@
           </div>
           <ul class="servicos">
             <li data-t="servLocal">Comer no local</li>
-            <li data-t="servTake">Take away</li>
+            <li data-t="servTake">Para levar</li>
             <li data-t="servEntrega">Entrega em casa</li>
           </ul>
         </div>
@@ -294,7 +294,7 @@
   </dialog>
 
   <!-- o pizza.js vem primeiro -> o site.js usa as funcoes dele; -->
-  <script src="pizza.js?v=19"></script>
-  <script src="site.js?v=19"></script>
+  <script src="pizza.js?v=21"></script>
+  <script src="site.js?v=21"></script>
 </body>
 </html>

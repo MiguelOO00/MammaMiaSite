@@ -70,6 +70,11 @@ html {
   scroll-padding-top: 76px; /* senao a barra de cima tapava o titulo quando se carrega num link; */
   overflow-x: clip; /* clip e nao hidden -> o hidden estragava o sticky; */
 }
+/* enquanto o site.js lê os JSON, o conteúdo fica escondido -> assim não se vê os títulos vazios e depois a saltar; */
+/* visibility e não opacity com transição -> fazer aparecer a página toda devagar pesava muito por causa das pizzas; */
+body.a-carregar main {
+  visibility: hidden;
+}
 body {
   margin: 0;
   overflow-x: clip;
@@ -334,6 +339,11 @@ ul {
   width: 100%;
   height: 100%;
   pointer-events: none; /* a neve não apanha os cliques dos botões; */
+  opacity: 0;
+  transition: opacity 2s; /* a neve aparece devagar em vez de surgir de repente; */
+}
+.neve.ligada {
+  opacity: 1;
 }
 .inicio-grelha {
   display: grid;
