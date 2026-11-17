@@ -123,6 +123,17 @@ a {
   color: var(--tomate);
   text-decoration: none;
 }
+.contactos a,
+.telefone p a {
+  text-decoration: underline;
+  text-decoration-color: transparent; /* o sublinhado já lá está mas invisível -> no hover só muda a cor, assim aparece devagar; */
+  text-underline-offset: 4px;
+  transition: text-decoration-color .3s ease;
+}
+.contactos a:hover,
+.telefone p a:hover {
+  text-decoration-color: currentColor;
+}
 ul {
   list-style: none;
   margin: 0;
@@ -290,8 +301,10 @@ ul {
 }
 .rodape-linha {
   position: relative; /* o texto fica por cima da neve; */
-  display: grid;
-  gap: .8rem;
+  display: flex;
+  flex-wrap: wrap; /* no telemóvel fica tudo seguido e só passa para baixo o que não cabe; */
+  align-items: center;
+  gap: .6rem 1.4rem;
 }
 .rodape-links {
   display: flex;
@@ -315,6 +328,7 @@ ul {
     padding: 0 32px;
   }
   .rodape-linha {
+    display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
   }
@@ -706,6 +720,7 @@ ul {
   display: flex;
   gap: .5rem;
   overflow-x: auto; /* no telemóvel os filtros deslizam para o lado; */
+  overflow-y: hidden; /* só para o lado -> no iPhone o dedo fazia-os mexer para cima e para baixo; */
   margin: -6px -16px; /* os 6px de cima e de baixo -> o contorno do teclado deixa de ficar cortado; */
   padding: 6px 16px;
   scrollbar-width: none;
@@ -740,6 +755,7 @@ ul {
   display: flex;
   gap: 1.5rem;
   overflow-x: auto;
+  overflow-y: hidden; /* só para o lado -> no iPhone o dedo fazia-os mexer para cima e para baixo; */
   margin: 0 -16px 1.4rem;
   padding: 0 16px;
   border-bottom: 1px solid var(--linha);
@@ -979,6 +995,11 @@ ul {
   border: 1.5px solid var(--linha);
   border-radius: 999px;
   cursor: pointer;
+  transition: background .3s ease, color .3s ease, border-color .3s ease;
+}
+.tamanhos-botoes button:hover {
+  border-color: var(--cinza);
+  color: var(--tinta);
 }
 .tamanhos-botoes svg {
   display: none; /* no telemovel so o texto -> assim os 3 botoes cabem numa linha; */
@@ -1140,9 +1161,13 @@ ul {
 }
 .telefone .numero {
   color: var(--claro);
+  transition: color .3s ease;
   font-size: clamp(2.4rem, 5vw, 3.5rem);
   font-weight: 300;
   line-height: 1.1;
+}
+.telefone .numero:hover {
+  color: var(--massa); /* o mesmo dourado do "Ligar agora" -> os dois ligam para o mesmo número; */
 }
 .telefone p {
   opacity: .72;
@@ -1234,6 +1259,10 @@ ul {
   color: var(--forno);
   font-size: 1rem;
   cursor: pointer;
+  transition: background .3s ease;
+}
+.foto-grande button:hover {
+  background: var(--massa);
 }
 
 /* horario; */
@@ -1446,9 +1475,17 @@ ul {
   padding: 4rem 0;
   background: var(--torrada); /* fundo mais escuro -> a faixa destaca-se e os cartoes claros saltam a vista; */
 }
+/* telemóvel -> a faixa desliza com o dedo e para em cada cartão (o site.js fá-la andar um cartão de cada vez); */
 .faixa {
   position: relative;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden; /* sem isto, no iPhone a faixa também mexia para cima e para baixo; */
+  scroll-snap-type: x mandatory; /* ao largar o dedo para sempre certinho num cartão; */
+  scroll-padding-left: 16px;
+  scrollbar-width: none;
+}
+.faixa::-webkit-scrollbar {
+  display: none;
 }
 /* esbatido nas pontas -> com mask-image o Safari do iPhone deixava de desenhar os cartões, por isso são duas camadas por cima; */
 .faixa::before,
@@ -1460,6 +1497,7 @@ ul {
   width: 6%;
   z-index: 1;
   pointer-events: none; /* as camadas não apanham os cliques nos cartões; */
+  display: none; /* só no computador -> no telemóvel a faixa faz scroll e as camadas iam atrás dos cartões; */
 }
 .faixa::before {
   left: 0;
@@ -1475,11 +1513,14 @@ ul {
   width: max-content;
 }
 .faixa-trilho {
-  padding: .5rem 0;
+  padding: .5rem 0 .5rem 16px; /* o primeiro cartão fica alinhado com o título; */
+}
+.faixa-copia {
+  display: none; /* a cópia só serve para a volta infinita do computador; */
 }
 .avaliacao {
   flex: 0 0 280px;
-  -webkit-touch-callout: none; /* no iPhone, com o dedo parado no cartão, não abre o menu do link; */
+  scroll-snap-align: start;
   display: flex;
   flex-direction: column;
   gap: .7rem;
@@ -1523,23 +1564,24 @@ ul {
   margin-top: 2rem;
 }
 
-/* so roda para quem nao tem menos movimento ligado -> os outros fazem scroll com o dedo; */
-@media (prefers-reduced-motion: no-preference) {
-  .faixa-trilho {
-    animation: rodar calc(var(--cartoes, 10) * 14s) linear infinite; /* 14 segundos por cartão -> no telemóvel só se vê um de cada vez, por isso vai devagar; */
-    will-change: transform; /* o browser prepara a animação à parte -> anda sem saltos no telemóvel; */
-  }
-  .faixa:hover .faixa-trilho,
-  .faixa-trilho.parada {
-    animation-play-state: paused; /* com o rato em cima ou o dedo na faixa para -> dá para ler com calma; */
-  }
-}
-@media (prefers-reduced-motion: reduce) {
+/* computador -> roda sozinha sem parar (só para quem não tem o "reduzir movimento" ligado); */
+@media (min-width: 1100px) and (prefers-reduced-motion: no-preference) {
   .faixa {
-    overflow-x: auto;
+    overflow: hidden;
+  }
+  .faixa::before,
+  .faixa::after {
+    display: block;
+  }
+  .faixa-trilho {
+    padding-left: 0; /* sem espaço à esquerda -> as duas metades ficam iguais e o -50% dá a volta certinha; */
+    animation: rodar calc(var(--cartoes, 10) * 7s) linear infinite; /* 7 segundos por cartão; */
   }
   .faixa-copia {
-    display: none;
+    display: flex;
+  }
+  .faixa:hover .faixa-trilho {
+    animation-play-state: paused; /* com o rato em cima para -> dá para ler com calma; */
   }
 }
 @keyframes rodar {
@@ -1552,8 +1594,5 @@ ul {
 @media (min-width: 1100px) {
   .avaliacao {
     flex-basis: 360px;
-  }
-  .faixa-trilho {
-    animation-duration: calc(var(--cartoes, 10) * 7s); /* no computador vêem-se vários cartões ao mesmo tempo -> pode andar ao dobro; */
   }
 }

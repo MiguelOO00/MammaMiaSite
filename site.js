@@ -417,8 +417,24 @@ function desenharAvaliacoes() {
 
   //os cartões vão duas vezes seguidas -> quando a primeira volta acaba a segunda já está no sítio e parece que nunca acaba;
   $("faixa").innerHTML = cartoes + `<div class="faixa-copia" aria-hidden="true">${cartoes}</div>`;
-  $("faixa").style.setProperty("--tempo", a.lista.length * 7 + "s"); //7 segundos por cartão;
+  $("faixa").style.setProperty("--cartoes", a.lista.length); //o css usa o número de cartões para a velocidade -> mais cartões, volta mais longa;
 }
+
+//no telemóvel a faixa anda um cartão de 6 em 6 segundos -> dá tempo para ler e também se pode deslizar com o dedo;
+const caixaFaixa = document.querySelector(".faixa");
+let ultimoToque = 0;
+caixaFaixa.addEventListener("touchstart", () => (ultimoToque = Date.now()), { passive: true });
+
+setInterval(() => {
+  const computador = matchMedia("(min-width: 1100px)").matches; //no computador quem a faz rodar é o css;
+  const semMovimento = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const cartao = caixaFaixa.querySelector(".avaliacao");
+  if (computador || semMovimento || !cartao || Date.now() - ultimoToque < 8000) return; //depois de um toque espera 8 segundos;
+
+  const noFim = caixaFaixa.scrollLeft + caixaFaixa.clientWidth >= caixaFaixa.scrollWidth - 10;
+  const proximo = noFim ? 0 : caixaFaixa.scrollLeft + cartao.offsetWidth + 16; //cartão + margem; no fim volta ao primeiro -> fica em loop;
+  caixaFaixa.scrollTo({ left: proximo, behavior: "smooth" });
+}, 6000);
 
 function desenharFotos() { //a galeria só aparece se houver fotos no site.json;
   const fotos = SITE.fotos || [];
@@ -523,18 +539,17 @@ async function iniciar() {
   pratoAtual = procurarPrato("MammaMia")?.prato || MENU.categorias[0].itens[0]; //a pizza do lado começa na pizza da casa;
 
   mudarLingua(lingua);
-  escreverTextos();
-  mostrarEstado();
-  desenharHorario();
-  desenharPizzaInicio();
-  desenharSugestoes();
-  desenharComoPedir();
-  desenharSeparadores();
-  desenharMenu();
-  desenharVista(false);
-  desenharAvaliacoes();
-  desenharFotos();
-  carregarMapa();
+
+  //cada parte é desenhada à parte -> se uma der erro, as outras aparecem na mesma e o site não fica em branco;
+  const partes = [escreverTextos, mostrarEstado, desenharHorario, desenharPizzaInicio, desenharSugestoes, desenharComoPedir,
+    desenharSeparadores, desenharMenu, () => desenharVista(false), desenharAvaliacoes, desenharFotos, carregarMapa];
+  partes.forEach((parte) => {
+    try {
+      parte();
+    } catch (e) {
+      console.error("Erro ao desenhar uma parte do site:", e);
+    }
+  });
 
   document.body.classList.remove("a-carregar"); //já está tudo desenhado -> a página aparece de uma vez, sem textos a saltar;
   setInterval(mostrarEstado, 30000); //vê o horário de 30 em 30 segundos -> os minutos vão descendo sozinhos;
