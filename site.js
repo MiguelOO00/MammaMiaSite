@@ -417,24 +417,35 @@ function desenharAvaliacoes() {
 
   //os cartões vão duas vezes seguidas -> quando a primeira volta acaba a segunda já está no sítio e parece que nunca acaba;
   $("faixa").innerHTML = cartoes + `<div class="faixa-copia" aria-hidden="true">${cartoes}</div>`;
-  $("faixa").style.setProperty("--cartoes", a.lista.length); //o css usa o número de cartões para a velocidade -> mais cartões, volta mais longa;
 }
 
-//no telemóvel a faixa anda um cartão de 6 em 6 segundos -> dá tempo para ler e também se pode deslizar com o dedo;
+//a faixa das avaliações anda sozinha e em loop -> é o js que a mexe, porque só com css o Safari do iPhone deixava de desenhar os cartões;
 const caixaFaixa = document.querySelector(".faixa");
-let ultimoToque = 0;
-caixaFaixa.addEventListener("touchstart", () => (ultimoToque = Date.now()), { passive: true });
+let posicaoFaixa = 0;    //quantos px a faixa já andou;
+let faixaParada = false; //fica true com o rato ou o dedo em cima;
+let tempoAnterior = 0;
 
-setInterval(() => {
-  const computador = matchMedia("(min-width: 1100px)").matches; //no computador quem a faz rodar é o css;
-  const semMovimento = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const cartao = caixaFaixa.querySelector(".avaliacao");
-  if (computador || semMovimento || !cartao || Date.now() - ultimoToque < 8000) return; //depois de um toque espera 8 segundos;
+caixaFaixa.addEventListener("mouseenter", () => (faixaParada = true));
+caixaFaixa.addEventListener("mouseleave", () => (faixaParada = false));
+caixaFaixa.addEventListener("touchstart", () => (faixaParada = true), { passive: true });
+caixaFaixa.addEventListener("touchend", () => (faixaParada = false));
+caixaFaixa.addEventListener("touchcancel", () => (faixaParada = false));
 
-  const noFim = caixaFaixa.scrollLeft + caixaFaixa.clientWidth >= caixaFaixa.scrollWidth - 10;
-  const proximo = noFim ? 0 : caixaFaixa.scrollLeft + cartao.offsetWidth + 16; //cartão + margem; no fim volta ao primeiro -> fica em loop;
-  caixaFaixa.scrollTo({ left: proximo, behavior: "smooth" });
-}, 6000);
+function andarFaixa(agora) {
+  const segundos = Math.min((agora - tempoAnterior) / 1000, 0.1); //no máximo 0,1s -> ao voltar ao site não dá um salto;
+  tempoAnterior = agora;
+
+  const velocidade = innerWidth < 1100 ? 25 : 50; //px por segundo -> no telemóvel só se vê um cartão, por isso vai mais devagar;
+  if (!faixaParada) posicaoFaixa += velocidade * segundos;
+
+  const metade = $("faixa").offsetWidth / 2; //a segunda metade é a cópia;
+  if (metade > 0 && posicaoFaixa >= metade) posicaoFaixa -= metade; //chegou à cópia -> volta ao início sem se notar;
+
+  $("faixa").style.transform = `translateX(${-posicaoFaixa}px)`;
+  requestAnimationFrame(andarFaixa);
+}
+
+if (!matchMedia("(prefers-reduced-motion: reduce)").matches) requestAnimationFrame(andarFaixa);
 
 function desenharFotos() { //a galeria só aparece se houver fotos no site.json;
   const fotos = SITE.fotos || [];
