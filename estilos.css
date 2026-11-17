@@ -754,14 +754,18 @@ ul {
 
 /* o --col é a largura das colunas dos precos -> igual no cabecalho e nos pratos para ficarem alinhados; */
 .lista {
-  --col: 58px;
+  --col: 62px;
 }
 .tamanhos,
 .prato-topo.tres {
   display: grid;
   grid-template-columns: 1fr repeat(3, var(--col));
-  gap: .4rem;
+  gap: .6rem;
   align-items: end;
+}
+/* os preços e os bonecos ficam ao centro da coluna -> assim o espaço entre pequena, média e familiar fica igual; */
+.prato-topo.tres .preco {
+  text-align: center;
 }
 .tamanhos {
   padding: .6rem 0 .4rem;
@@ -773,7 +777,7 @@ ul {
 /* bonecos dos tamanhos -> sao botoes que mudam o tamanho; */
 .tamanhos button {
   display: grid;
-  justify-items: end;
+  justify-items: center;
   gap: .3rem;
   padding: .2rem 0;
   font: inherit;
@@ -979,7 +983,7 @@ ul {
 /* tablet; */
 @media (min-width: 700px) {
   .lista {
-    --col: 70px;
+    --col: 82px; /* cabe o "18,50 €" com folga; */
   }
   .ferramentas {
     grid-template-columns: minmax(260px, 380px) 1fr;
