@@ -64,6 +64,22 @@
 [hidden] {
   display: none !important; /* sem isto o display: flex dos botões de tamanho ganhava ao hidden e eles apareciam na burrata; */
 }
+/* mostra só a língua escolhida -> os textos fixos estão no HTML em português e em inglês, e aqui esconde-se o outro; */
+html[lang="pt-PT"] [lang="en"],
+html[lang="en-GB"] [lang="pt"] {
+  display: none !important;
+}
+/* ajuda da pizza do lado -> no computador fala do rato, no telemóvel fala do toque; */
+@media (hover: hover) {
+  .so-toque {
+    display: none;
+  }
+}
+@media (hover: none) {
+  .so-rato {
+    display: none;
+  }
+}
 html {
   color-scheme: dark; /* o browser pinta as barras de scroll e os campos em escuro; */
   scroll-behavior: smooth;

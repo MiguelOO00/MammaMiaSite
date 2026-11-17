@@ -13,9 +13,16 @@
   <!-- segurança -> quando se carrega num link para outro site, esse site não fica a saber de que página vinha a pessoa; -->
   <meta name="referrer" content="strict-origin-when-cross-origin">
 
-  <link rel="stylesheet" href="estilos.css?v=23">
+  <link rel="stylesheet" href="estilos.css?v=24">
 </head>
 <body class="a-carregar">
+
+  <!--
+    DE ONDE VÊM OS TEXTOS:
+    - data-texto="..."  -> texto que muda (fica no conteudo/site.json);
+    - lang="pt" / lang="en" -> textos fixos do site, já escritos nas duas línguas (o CSS mostra só a escolhida);
+    - data-pt / data-en -> textos que não se veem (leitores de ecrã) ou da caixa de pesquisa;
+  -->
 
   <!-- cores e filtros das pizzas -> estao aqui uma vez e todas as pizzas usam; -->
   <svg class="defs-pizza" width="0" height="0" aria-hidden="true" focusable="false">
@@ -82,13 +89,13 @@
   <header class="barra">
     <a class="logo" href="#inicio">MAMMA MIA</a>
     <nav class="links" aria-label="Secções">
-      <a href="#menu" data-t="menu">Menu</a>
-      <a class="so-pc" href="#pedir" data-t="comoPedir">Como pedir</a>
-      <a class="so-pc" href="#horario" data-t="horario">Horário</a>
-      <a class="so-pc" href="#onde" data-t="onde">Onde estamos</a>
-        <a class="so-pc" href="#avaliacoes" data-t="navAvaliacoes">Avaliações</a>
-      <button class="lingua" id="lingua" type="button" aria-label="Mudar a língua">EN</button>
-      <a class="botao tomate so-pc" data-ligar href="#" data-t="ligar">Ligar</a>
+      <a href="#menu"><span lang="pt">Menu</span><span lang="en">Menu</span></a>
+      <a class="so-pc" href="#pedir"><span lang="pt">Como pedir</span><span lang="en">How to order</span></a>
+      <a class="so-pc" href="#horario"><span lang="pt">Horário</span><span lang="en">Opening hours</span></a>
+      <a class="so-pc" href="#onde"><span lang="pt">Onde estamos</span><span lang="en">Find us</span></a>
+        <a class="so-pc" href="#avaliacoes"><span lang="pt">Avaliações</span><span lang="en">Reviews</span></a>
+      <button class="lingua" id="lingua" type="button" data-pt="Mudar para inglês" data-en="Switch to Portuguese"><span lang="pt">EN</span><span lang="en">PT</span></button>
+      <a class="botao tomate so-pc" data-ligar href="#"><span lang="pt">Ligar</span><span lang="en">Call</span></a>
     </nav>
   </header>
 
@@ -102,13 +109,13 @@
           <h1 data-texto="inicio.titulo"></h1>
           <p class="frase" data-texto="inicio.frase"></p>
           <div class="botoes">
-            <a class="botao tomate" data-ligar href="#"><span data-t="ligar">Ligar</span> <span data-fixo></span></a>
-            <a class="botao linha" href="#menu" data-t="verMenu">Ver o menu</a>
+            <a class="botao tomate" data-ligar href="#"><span><span lang="pt">Ligar</span><span lang="en">Call</span></span> <span data-fixo></span></a>
+            <a class="botao linha" href="#menu"><span lang="pt">Ver o menu</span><span lang="en">See the menu</span></a>
           </div>
           <ul class="servicos">
-            <li data-t="servLocal">Comer no local</li>
-            <li data-t="servTake">Para levar</li>
-            <li data-t="servEntrega">Entrega em casa</li>
+            <li><span lang="pt">Comer no local</span><span lang="en">Eat in</span></li>
+            <li><span lang="pt">Para levar</span><span lang="en">Takeaway</span></li>
+            <li><span lang="pt">Entrega em casa</span><span lang="en">Delivery</span></li>
           </ul>
         </div>
 
@@ -128,7 +135,7 @@
       </div>
     </section>
 
-    <!-- sugestões -> as pizzas escolhem-se no restaurante.json; -->
+    <!-- sugestões -> as pizzas escolhem-se no site.json; -->
     <section class="sugestoes">
       <div class="wrap">
         <div class="cabecalho">
@@ -143,19 +150,24 @@
     <section class="menu" id="menu">
       <div class="wrap">
         <div class="cabecalho">
-          <h2 data-t="oMenu">O menu</h2>
-          <p class="cinza" data-t="iva">Preços com IVA incluído.</p>
+          <h2><span lang="pt">O menu</span><span lang="en">Our menu</span></h2>
+          <p class="cinza"><span lang="pt">Preços com IVA incluído.</span><span lang="en">Prices include VAT.</span></p>
         </div>
 
         <div class="ferramentas">
           <label class="pesquisa">
             <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="6"/><path d="M14 14 L18 18"/></svg>
-            <input id="pesquisa" type="search" autocomplete="off" data-t-placeholder="procurar">
+            <input id="pesquisa" type="search" autocomplete="off" data-pt="Procure uma pizza ou um ingrediente" data-en="Search for a pizza or ingredient">
           </label>
-          <div class="filtros" id="filtros"></div>
+          <div class="filtros" id="filtros">
+            <button type="button" class="filtro" data-filtro="todas" aria-pressed="true"><span lang="pt">Todas</span><span lang="en">All</span></button>
+            <button type="button" class="filtro" data-filtro="vegetarianas" aria-pressed="false"><span lang="pt">Sem carne nem peixe</span><span lang="en">Vegetarian</span></button>
+            <button type="button" class="filtro" data-filtro="carne" aria-pressed="false"><span lang="pt">Com carne</span><span lang="en">With meat</span></button>
+            <button type="button" class="filtro" data-filtro="marisco" aria-pressed="false"><span lang="pt">Peixe e marisco</span><span lang="en">Fish and seafood</span></button>
+          </div>
         </div>
 
-        <div class="separadores" id="separadores" role="tablist" data-t-aria="categorias"></div>
+        <div class="separadores" id="separadores" role="tablist" data-pt="Categorias do menu" data-en="Menu categories"></div>
 
         <div class="menu-grelha">
           <div>
@@ -172,16 +184,23 @@
               </g>
             </svg>
             <div class="vista-info">
-              <p class="mao" id="vistaAjuda"></p>
+              <p class="mao">
+                <span class="so-rato"><span lang="pt">passe o rato por cima de uma pizza para a ver</span><span lang="en">hover over a pizza to see it</span></span>
+                <span class="so-toque"><span lang="pt">toque numa pizza para a ver</span><span lang="en">tap a pizza to see it</span></span>
+              </p>
               <h3 id="vistaNome"></h3>
-              <div class="tamanhos-botoes" id="tamanhosBotoes" role="radiogroup" data-t-aria="tamanho"></div>
+              <div class="tamanhos-botoes" id="tamanhosBotoes" role="radiogroup" data-pt="Tamanho" data-en="Size">
+                <button type="button" role="radio" aria-checked="false" data-tamanho="0"><svg viewBox="0 0 18 24"><circle cx="9" cy="6" r="5"/><path d="M0 24 v-6 a9 9 0 0 1 18 0 v6 z"/></svg><span><span lang="pt">Pequena</span><span lang="en">Small</span></span></button>
+                <button type="button" role="radio" aria-checked="true" data-tamanho="1"><svg viewBox="0 0 32 24"><circle cx="9" cy="6" r="5"/><path d="M0 24 v-6 a9 9 0 0 1 18 0 v6 z"/><g transform="translate(17 4.8) scale(.8)"><circle cx="9" cy="6" r="5"/><path d="M0 24 v-6 a9 9 0 0 1 18 0 v6 z"/></g></svg><span><span lang="pt">Média</span><span lang="en">Medium</span></span></button>
+                <button type="button" role="radio" aria-checked="false" data-tamanho="2"><svg viewBox="0 0 58 24"><circle cx="9" cy="6" r="5"/><path d="M0 24 v-6 a9 9 0 0 1 18 0 v6 z"/><g transform="translate(15 6) scale(.75)"><circle cx="9" cy="6" r="5"/><path d="M0 24 v-6 a9 9 0 0 1 18 0 v6 z"/></g><g transform="translate(28 6) scale(.75)"><circle cx="9" cy="6" r="5"/><path d="M0 24 v-6 a9 9 0 0 1 18 0 v6 z"/></g><g transform="translate(41 0)"><circle cx="9" cy="6" r="5"/><path d="M0 24 v-6 a9 9 0 0 1 18 0 v6 z"/></g></svg><span><span lang="pt">Familiar</span><span lang="en">Family</span></span></button>
+              </div>
               <p class="vista-preco" id="vistaPreco"></p>
               <p class="cinza" id="vistaIng"></p>
             </div>
           </aside>
         </div>
 
-        <p class="cinza rodape-menu" data-t="intolerancia">Tem alguma intolerância alimentar? Diga-nos quando fizer o pedido.</p>
+        <p class="cinza rodape-menu"><span lang="pt">Tem alguma intolerância alimentar? Diga-nos quando fizer o pedido.</span><span lang="en">Any food intolerances? Let us know when you order.</span></p>
       </div>
     </section>
 
@@ -196,17 +215,17 @@
         <div class="telefone">
           <div>
             <a class="numero" data-ligar href="#"><span data-fixo></span></a>
-            <p><span data-t="ou">ou</span> <a data-ligar-movel href="#"><span data-movel></span></a> (<span data-t="telemovel">telemóvel</span>)</p>
+            <p><span><span lang="pt">ou</span><span lang="en">or</span></span> <a data-ligar-movel href="#"><span data-movel></span></a> (<span><span lang="pt">telemóvel</span><span lang="en">mobile</span></span>)</p>
           </div>
-          <a class="botao claro" data-ligar href="#" data-t="ligarAgora">Ligar agora</a>
+          <a class="botao claro" data-ligar href="#"><span lang="pt">Ligar agora</span><span lang="en">Call now</span></a>
         </div>
       </div>
     </section>
 
-    <!-- fotos -> só aparece se houver fotos no restaurante.json; -->
+    <!-- fotos -> só aparece se houver fotos no site.json; -->
     <section class="fotos" id="fotos" hidden>
       <div class="wrap">
-        <h2 data-t="aCasa">A nossa casa</h2>
+        <h2><span lang="pt">A nossa casa</span><span lang="en">Our place</span></h2>
         <div class="fotos-grelha" id="fotosGrelha"></div>
       </div>
     </section>
@@ -215,22 +234,22 @@
     <section class="horario" id="horario">
       <div class="wrap horario-grelha">
         <div>
-          <h2 data-t="horario">Horário</h2>
+          <h2><span lang="pt">Horário</span><span lang="en">Opening hours</span></h2>
           <ul class="semana" id="semana"></ul>
           <div class="turnos" id="turnos"></div>
           <p class="cinza" id="fechadoTexto"></p>
 
-          <h3 id="onde" data-t="onde">Onde estamos</h3>
+          <h3 id="onde"><span lang="pt">Onde estamos</span><span lang="en">Find us</span></h3>
           <p id="morada"></p>
           <ul class="contactos">
-            <li><a data-ligar href="#"><span data-t="telefone">Telefone</span> <span data-fixo></span></a></li>
-            <li><a data-ligar-movel href="#"><span data-t="telemovelM">Telemóvel</span> <span data-movel></span></a></li>
+            <li><a data-ligar href="#"><span><span lang="pt">Telefone</span><span lang="en">Phone</span></span> <span data-fixo></span></a></li>
+            <li><a data-ligar-movel href="#"><span><span lang="pt">Telemóvel</span><span lang="en">Mobile</span></span> <span data-movel></span></a></li>
             <li><a data-instagram href="#" target="_blank" rel="noopener noreferrer">Instagram</a></li>
           </ul>
         </div>
         <!-- mapa -> nao se arrasta, carregar abre o Google Maps; -->
         <div class="mapa">
-          <a class="mapa-link" data-mapa-link href="#" target="_blank" rel="noopener noreferrer" data-t-aria="abrirMapa">
+          <a class="mapa-link" data-mapa-link href="#" target="_blank" rel="noopener noreferrer" data-pt="Abrir no Google Maps" data-en="Open in Google Maps">
             <iframe id="mapa" title="Mapa" loading="lazy" referrerpolicy="no-referrer-when-downgrade" tabindex="-1"></iframe>
             <span class="mapa-esbatido"></span>
             <span class="mapa-pino" aria-hidden="true">
@@ -241,30 +260,30 @@
 
           <!-- cartao do mapa -> morada, estado e os botoes; -->
           <div class="mapa-cartao">
-            <p class="mao" data-t="estamosAqui">estamos aqui</p>
+            <p class="mao"><span lang="pt">estamos aqui</span><span lang="en">we're here</span></p>
             <h3>Mamma Mia</h3>
             <p class="cinza" id="mapaMorada"></p>
             <p class="estado" id="mapaEstado"><span class="ponto"></span><span class="estado-texto">…</span></p>
             <div class="mapa-botoes">
-              <a class="botao tomate" data-direcoes href="#" target="_blank" rel="noopener noreferrer" data-t="comoChegar">Como chegar</a>
-              <a class="botao linha" data-ligar href="#" data-t="ligar">Ligar</a>
+              <a class="botao tomate" data-direcoes href="#" target="_blank" rel="noopener noreferrer"><span lang="pt">Como chegar</span><span lang="en">Directions</span></a>
+              <a class="botao linha" data-ligar href="#"><span lang="pt">Ligar</span><span lang="en">Call</span></a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- avaliacoes -> as do Google a passar devagar, para quem nao conhece ver que é bom; -->
+    <!-- avaliações -> vêm do avaliacoes.json e passam devagar, para quem não conhece ver que é bom; -->
     <section class="avaliacoes" id="avaliacoes">
       <div class="wrap cabecalho">
-        <h2 data-texto="avaliacoes.titulo"></h2>
+        <h2><span lang="pt">O que dizem de nós</span><span lang="en">What people say about us</span></h2>
         <p class="mao" id="avaliacoesNota"></p>
       </div>
       <div class="faixa">
         <div class="faixa-trilho" id="faixa"></div>
       </div>
       <div class="wrap avaliacoes-fim">
-        <a class="botao linha" id="avaliacoesLink" href="#" target="_blank" rel="noopener noreferrer" data-t="verTodas">Ver todas no Google</a>
+        <a class="botao linha" id="avaliacoesLink" href="#" target="_blank" rel="noopener noreferrer"><span lang="pt">Ver todas no Google</span><span lang="en">See them all on Google</span></a>
       </div>
     </section>
   </main>
@@ -277,24 +296,26 @@
         <a data-instagram href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
         <a id="linkFacebook" href="#" target="_blank" rel="noopener noreferrer">Facebook</a>
       </nav>
-      <span data-t="wifi">Wi-Fi disponível</span>
+      <span><span lang="pt">Wi-Fi disponível</span><span lang="en">Free Wi-Fi</span></span>
     </div>
   </footer>
 
   <!-- barra de baixo -> so no telemovel, para ter os botoes perto do dedo; -->
   <div class="barra-baixo">
-    <a class="botao tomate" data-ligar href="#" data-t="ligar">Ligar</a>
-    <a class="botao linha" data-direcoes href="#" target="_blank" rel="noopener noreferrer" data-t="comoChegar">Como chegar</a>
+    <a class="botao tomate" data-ligar href="#"><span lang="pt">Ligar</span><span lang="en">Call</span></a>
+    <a class="botao linha" data-direcoes href="#" target="_blank" rel="noopener noreferrer"><span lang="pt">Como chegar</span><span lang="en">Directions</span></a>
   </div>
 
   <!-- foto em grande; -->
   <dialog class="foto-grande" id="fotoGrande">
     <img id="fotoGrandeImg" alt="">
-    <button type="button" id="fecharFoto" data-t-aria="fechar">✕</button>
+    <button type="button" id="fecharFoto" data-pt="Fechar" data-en="Close">✕</button>
   </dialog>
 
-  <!-- o pizza.js vem primeiro -> o site.js usa as funcoes dele; -->
-  <script src="pizza.js?v=23"></script>
-  <script src="site.js?v=23"></script>
+  <!-- o pizza.js vem primeiro -> o site.js usa as funções dele; -->
+  <script src="pizza.js?v=24"></script>
+  <script src="site.js?v=24"></script>
+  <!-- neve no início e no rodapé -> para tirar a neve, apaga só esta linha; -->
+  <script src="neve.js?v=24"></script>
 </body>
 </html>
