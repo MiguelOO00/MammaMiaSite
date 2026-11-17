@@ -397,8 +397,14 @@ function Neve(tela, zona) {
     };
   }
 
+  let larguraAntes = 0;
+
   //põe o canvas do tamanho da zona e cria os flocos -> corre no arranque e quando se roda o telemóvel;
   function Medir() {
+    //no telemóvel a barra do browser aparece e desaparece com o scroll e muda a altura do ecrã;
+    //se a largura não mudou não recria os flocos -> senão a neve recomeçava a cada scroll;
+    if (tela.offsetWidth === larguraAntes) return;
+    larguraAntes = tela.offsetWidth;
     const escala = Math.min(window.devicePixelRatio || 1, 2); //ecrãs de telemóvel têm mais píxeis -> sem isto ficava desfocado;
     largura = tela.offsetWidth;
     altura = tela.offsetHeight;
@@ -452,6 +458,8 @@ function Neve(tela, zona) {
       f.y += f.empurraY * segundos;
       f.empurraX *= 0.94; //o empurrão vai perdendo força -> parece ar e não uma parede;
       f.empurraY *= 0.94;
+      f.empurraX = Math.max(-200, Math.min(200, f.empurraX)); //limite de velocidade -> um floco nunca dispara a voar;
+      f.empurraY = Math.max(-200, Math.min(200, f.empurraY));
 
       //quando sai da zona volta a nascer em cima, noutro sítio;
       if (f.y > altura + 20) Object.assign(f, NovoFloco(f.camada, true));
@@ -474,6 +482,8 @@ function Neve(tela, zona) {
 
   //posição do rato em relação ao canvas -> o canvas não apanha cliques, por isso ouve-se a zona à volta;
   zona.addEventListener("pointermove", function (e) {
+    //só o rato sopra a neve -> no telemóvel o dedo é para fazer scroll (e puxar para atualizar), senão a neve disparava;
+    if (e.pointerType !== "mouse") return;
     const caixa = tela.getBoundingClientRect();
     ratoX = e.clientX - caixa.left;
     ratoY = e.clientY - caixa.top;
